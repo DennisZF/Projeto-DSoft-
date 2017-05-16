@@ -41,4 +41,4 @@ class Menu_principal:
 			self.frame.destroy()
 		self.frame =Frame(self.janela)
 		self.frame.pack(padx=0, pady = 15)
-		C = Calendario(self.frame) 
+		C = Calendario(self.frame, self.dados) 
