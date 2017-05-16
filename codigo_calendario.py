@@ -204,7 +204,8 @@ class Calendar(ttk.Frame):
             return None
 
         year, month = self._date.year, self._date.month
-        return self.datetime(year, month, int(self._selection[0]))
+        a = self.datetime(year, month, int(self._selection[0]))
+        return a.strftime('%d/%m/%Y')
 	
     def get_calendar(self,locale, fwday):
 		# instantiate proper calendar class
