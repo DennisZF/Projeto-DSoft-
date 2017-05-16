@@ -4,6 +4,7 @@ class Database:
 	#Seria melhor se houvesse um dicionario com esses dados online
 		self.usuarios = {}
 		self.dados = {}
+		self.horarios = {"16/05/2017":["00:00 - oi", "21:00 - tchau"],"18/05/2017":["00:00 - oi", "21:00 - tchau"]}
 	def addusuario(self, usuario, senha, nome, semestre, matricula, email):
 		self.usuarios[usuario] = senha
 		self.dados[usuario] = [senha, nome, semestre, matricula, email]
