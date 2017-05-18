@@ -18,7 +18,7 @@ class Menu_principal:
 		
 		#Botões:
 		self.calendario =Button(canto, text="Calendário",height = 1,width = 25,bg= 'Maroon', fg='Black',command= self.calendar, font =("Helvetica", 10, 'bold')).pack(side=LEFT)
-		self.agendamento = Button(canto, text="Agendamento",height = 1, width =25, bg='Tomato',fg='Black',font =("Helvetica", 10, 'bold')).pack(side=LEFT)
+		self.agendamento = Button(canto, text="Agendamento",height = 1, width =25, bg='Tomato',fg='Black',command= self.agenda,font =("Helvetica", 10, 'bold')).pack(side=LEFT)
 		self.cancelamento = Button(canto, text="Cancelamento",height = 1,width = 25,bg= 'Maroon',fg='Black',font =("Helvetica", 10, 'bold')).pack(side=LEFT)
 		self.instrucoes = Button(canto, text="Instruções",height = 1,width = 25, bg='Tomato',fg='Black',font =("Helvetica", 10, 'bold'), command=self.instrucoes).pack(side=LEFT)
 		self.historico = Button(canto, text="Histórico", height =1,width = 25,bg= 'Maroon',fg='Black',font =("Helvetica", 10, 'bold')).pack(side=LEFT)
@@ -55,6 +55,14 @@ class Menu_principal:
 		self.menu.pack(side = RIGHT, padx = 30)
 		C = Calendario(self.frame, self.dados, self.menu) 
 	
+	def agenda(self):
+		from Classe_Agendamento import Agendamento
+		if hasattr(self,'frame'):
+			self.frame.destroy()
+		self.frame=Frame(self.janela)
+		self.frame.pack(padx=0, pady=15)
+		selecoes= Agendamento(self.frame)
+		
 	def instrucoes(self):
 		from Classe_Instruções import Instrucoes
 		if hasattr(self, 'menu'):
@@ -66,3 +74,4 @@ class Menu_principal:
 		self.frame=Frame(self.janela)
 		self.frame.pack(padx=0, pady=15)
 		I=Instrucoes(self.frame, self.dados, self.menu)
+	
