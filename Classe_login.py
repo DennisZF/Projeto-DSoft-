@@ -1,4 +1,4 @@
-from tkinter import *
+from tkinter import *            #importa o pacote e permite que este seja utilizado sem "chamada" (tk.)
 import tkinter.font as tkFont
 import tkinter.ttk as ttk
 

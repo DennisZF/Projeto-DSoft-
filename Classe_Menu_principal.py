@@ -20,7 +20,7 @@ class Menu_principal:
 		self.calendario =Button(canto, text="Calendário",height = 1,width = 25,bg= 'Maroon', fg='Black',command= self.calendar, font =("Helvetica", 10, 'bold')).pack(side=LEFT)
 		self.agendamento = Button(canto, text="Agendamento",height = 1, width =25, bg='Tomato',fg='Black',font =("Helvetica", 10, 'bold')).pack(side=LEFT)
 		self.cancelamento = Button(canto, text="Cancelamento",height = 1,width = 25,bg= 'Maroon',fg='Black',font =("Helvetica", 10, 'bold')).pack(side=LEFT)
-		self.instrucoes = Button(canto, text="Instruções",height = 1,width = 25, bg='Tomato',fg='Black',font =("Helvetica", 10, 'bold')).pack(side=LEFT)
+		self.instrucoes = Button(canto, text="Instruções",height = 1,width = 25, bg='Tomato',fg='Black',font =("Helvetica", 10, 'bold'), command=self.instrucoes).pack(side=LEFT)
 		self.historico = Button(canto, text="Histórico", height =1,width = 25,bg= 'Maroon',fg='Black',font =("Helvetica", 10, 'bold')).pack(side=LEFT)
 		self.minha_conta =Button(canto, text="Minha Conta",height = 1,width = 25,bg= 'Tomato', fg='Black',font =("Helvetica", 10, 'bold')).pack(side=LEFT)
 		self.sair = Button(canto, text="Sair", height =1, width =15,bg= 'black',fg= 'White',command= self.sai,font =("Helvetica", 10, 'bold')).pack(side=LEFT)
@@ -28,8 +28,11 @@ class Menu_principal:
 	#------- Funções ---------	
 	
 	#Botão sair:
+	
 	def sai(self):
 		from Classe_Sair import Sair
+		if hasattr(self, 'menu'):
+			self.menu.destroy()
 		if hasattr(self,'frame'):
 			self.frame.destroy()
 		if hasattr(self,'menu'):
@@ -37,8 +40,11 @@ class Menu_principal:
 		self.frame =Frame(self.janela)
 		self.frame.pack(padx=0, pady = 15)
 		s = Sair(self.janela,self.frame, self.dados) 
+	
 	def calendar(self):
 		from Classe_Calendario import Calendario
+		if hasattr(self, 'menu'):
+			self.menu.destroy()
 		if hasattr(self,'frame'):
 			self.frame.destroy()
 		if hasattr(self,'menu'):
@@ -48,3 +54,15 @@ class Menu_principal:
 		self.menu = Frame(self.janela)
 		self.menu.pack(side = RIGHT, padx = 30)
 		C = Calendario(self.frame, self.dados, self.menu) 
+	
+	def instrucoes(self):
+		from Classe_Instruções import Instrucoes
+		if hasattr(self, 'menu'):
+			self.menu.destroy()
+		if hasattr(self,"frame"):
+			self.frame.destroy()
+		self.menu=Frame (cursor="hand2")
+		self.menu.pack(side=LEFT)
+		self.frame=Frame(self.janela)
+		self.frame.pack(padx=0, pady=15)
+		I=Instrucoes(self.frame, self.dados, self.menu)
