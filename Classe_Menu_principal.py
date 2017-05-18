@@ -32,6 +32,8 @@ class Menu_principal:
 		from Classe_Sair import Sair
 		if hasattr(self,'frame'):
 			self.frame.destroy()
+		if hasattr(self,'menu'):
+			self.menu.destroy()
 		self.frame =Frame(self.janela)
 		self.frame.pack(padx=0, pady = 15)
 		s = Sair(self.janela,self.frame, self.dados) 
@@ -39,6 +41,10 @@ class Menu_principal:
 		from Classe_Calendario import Calendario
 		if hasattr(self,'frame'):
 			self.frame.destroy()
+		if hasattr(self,'menu'):
+			self.menu.destroy()
 		self.frame =Frame(self.janela)
-		self.frame.pack(padx=0, pady = 15)
-		C = Calendario(self.frame, self.dados) 
+		self.frame.pack(side = LEFT, padx=0, pady = 15)
+		self.menu = Frame(self.janela)
+		self.menu.pack(side = RIGHT, padx = 30)
+		C = Calendario(self.frame, self.dados, self.menu) 
