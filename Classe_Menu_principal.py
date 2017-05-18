@@ -35,6 +35,8 @@ class Menu_principal:
 			self.menu.destroy()
 		if hasattr(self,'frame'):
 			self.frame.destroy()
+		if hasattr(self,'menu'):
+			self.menu.destroy()
 		self.frame =Frame(self.janela)
 		self.frame.pack(padx=0, pady = 15)
 		s = Sair(self.janela,self.frame, self.dados) 
@@ -45,9 +47,13 @@ class Menu_principal:
 			self.menu.destroy()
 		if hasattr(self,'frame'):
 			self.frame.destroy()
+		if hasattr(self,'menu'):
+			self.menu.destroy()
 		self.frame =Frame(self.janela)
-		self.frame.pack(padx=0, pady = 15)
-		C = Calendario(self.frame, self.dados)
+		self.frame.pack(side = LEFT, padx=0, pady = 15)
+		self.menu = Frame(self.janela)
+		self.menu.pack(side = RIGHT, padx = 30)
+		C = Calendario(self.frame, self.dados, self.menu) 
 	
 	def instrucoes(self):
 		from Classe_Instruções import Instrucoes
@@ -60,4 +66,3 @@ class Menu_principal:
 		self.frame=Frame(self.janela)
 		self.frame.pack(padx=0, pady=15)
 		I=Instrucoes(self.frame, self.dados, self.menu)
-				
