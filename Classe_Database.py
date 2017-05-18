@@ -15,16 +15,3 @@ class Database:
 		else:
 			return False
 			
-#08:00 = 0
-#08:30 = 1
-#09:00 = 2
-#09:30 = 3
-#10:00 = 4
-#10:30 = 5
-
-
-
-#for i in range(0,15):
-#	a = str(i)
-#	if a in self.horarios:
-#	self.horarios[a]
