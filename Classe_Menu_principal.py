@@ -1,8 +1,10 @@
 from tkinter import *
 class Menu_principal:
-	def __init__(self, dados):
+	def __init__(self, dados, usuario):
+		self.usuario = usuario
 		self.dados = dados
 		self.janela = Tk()					#Abre nova janela
+		self.janela.geometry("{0}x{1}+0+0".format(self.janela.winfo_screenwidth(), self.janela.winfo_screenheight()))
 		self.janela.title("Página principal - FabLab Insper")
 		
 		#------------ Cabeçalho ----------
@@ -22,7 +24,7 @@ class Menu_principal:
 		self.cancelamento = Button(canto, text="Cancelamento",height = 1,width = 25,bg= 'Maroon',fg='Black',font =("Helvetica", 10, 'bold')).pack(side=LEFT)
 		self.instrucoes = Button(canto, text="Instruções",height = 1,width = 25, bg='Tomato',fg='Black',font =("Helvetica", 10, 'bold'), command=self.instrucoes).pack(side=LEFT)
 		self.historico = Button(canto, text="Histórico", height =1,width = 25,bg= 'Maroon',fg='Black',font =("Helvetica", 10, 'bold')).pack(side=LEFT)
-		self.minha_conta =Button(canto, text="Minha Conta",height = 1,width = 25,bg= 'Tomato', fg='Black',font =("Helvetica", 10, 'bold')).pack(side=LEFT)
+		self.minha_conta =Button(canto, text="Minha Conta",height = 1,width = 25,bg= 'Tomato', fg='Black',font =("Helvetica", 10, 'bold'), command= self.conta).pack(side=LEFT)
 		self.sair = Button(canto, text="Sair", height =1, width =15,bg= 'black',fg= 'White',command= self.sai,font =("Helvetica", 10, 'bold')).pack(side=LEFT)
 		
 	#------- Funções ---------	
@@ -73,3 +75,12 @@ class Menu_principal:
 		self.frame.pack(padx=0, pady=15)
 		I=Instrucoes(self.frame, self.dados, self.menu)
 	
+	def conta(self):
+		from Classe_Minha_conta import Minha_conta
+		if hasattr(self, 'menu'):
+			self.menu.destroy()
+		if hasattr(self,'frame'):
+			self.frame.destroy()
+		self.frame=Frame(self.janela)
+		self.frame.pack(padx=0, pady=15)
+		M= Minha_conta(self.frame, self.dados, self.usuario)
