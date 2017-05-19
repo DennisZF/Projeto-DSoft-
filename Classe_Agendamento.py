@@ -47,7 +47,7 @@ class Agendamento:
 		self.escolha6.grid(row=4, column=4, padx= 10)
 		self.combo5=ttk.Combobox(frame)       #combobox de seleção
 		self.combo5.grid(row=5, column=4, padx= 10)
-		self.combo5['values']=('0','1','2','3','4')
+		self.combo5['values']=('1','2','3','4')
 		self.combo5.current(0) #default é o primeiro termo
 		
 		
