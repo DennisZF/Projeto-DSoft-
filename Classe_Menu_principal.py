@@ -21,7 +21,7 @@ class Menu_principal:
 		#Botões:
 		self.calendario =Button(canto, text="Calendário",height = 1,width = 25,bg= 'Maroon', fg='Black',command= self.calendar, font =("Helvetica", 10, 'bold')).pack(side=LEFT)
 		self.agendamento = Button(canto, text="Agendamento",height = 1, width =25, bg='Tomato',fg='Black',command= self.agenda,font =("Helvetica", 10, 'bold')).pack(side=LEFT)
-		self.cancelamento = Button(canto, text="Cancelamento",height = 1,width = 25,bg= 'Maroon',fg='Black',font =("Helvetica", 10, 'bold')).pack(side=LEFT)
+		self.cancelamento = Button(canto, text="Cancelamento",height = 1,width = 25,bg= 'Maroon',fg='Black',font =("Helvetica", 10, 'bold'), command= self.cancela).pack(side=LEFT)
 		self.instrucoes = Button(canto, text="Instruções",height = 1,width = 25, bg='Tomato',fg='Black',font =("Helvetica", 10, 'bold'), command=self.instrucoes).pack(side=LEFT)
 		self.historico = Button(canto, text="Histórico", height =1,width = 25,bg= 'Maroon',fg='Black',font =("Helvetica", 10, 'bold')).pack(side=LEFT)
 		self.minha_conta =Button(canto, text="Minha Conta",height = 1,width = 25,bg= 'Tomato', fg='Black',font =("Helvetica", 10, 'bold'), command= self.conta).pack(side=LEFT)
@@ -49,7 +49,7 @@ class Menu_principal:
 			self.frame.destroy()
 		self.frame =Frame(self.janela)
 		self.frame.pack(side = LEFT, anchor ='n')
-		self.menu = Frame(self.janela, width=1366,height=700)
+		self.menu = Frame(self.janela)
 		self.menu.pack(side = RIGHT, padx = 30)
 		C = Calendario(self.frame, self.dados, self.menu) 
 	
@@ -59,9 +59,9 @@ class Menu_principal:
 			self.menu.destroy()
 		if hasattr(self,'frame'):
 			self.frame.destroy()
-		self.frame=Frame(self.janela, width=1366,height=700)
+		self.frame=Frame(self.janela)
 		self.frame.pack(padx=0, pady=15)
-		selecoes= Agendamento(self.frame)
+		selecoes= Agendamento(self.frame, self.dados, self.usuario)
 		
 	def instrucoes(self):
 		from Classe_Instruções import Instrucoes
@@ -71,7 +71,7 @@ class Menu_principal:
 			self.frame.destroy()
 		self.menu=Frame (cursor="hand2")
 		self.menu.pack(side=LEFT)
-		self.frame=Frame(self.janela, width=1366,height=700)
+		self.frame=Frame(self.janela)
 		self.frame.pack(padx=0, pady=15)
 		I=Instrucoes(self.frame, self.dados, self.menu)
 	
@@ -84,3 +84,13 @@ class Menu_principal:
 		self.frame=Frame(self.janela)
 		self.frame.pack(padx=0, pady=15)
 		M= Minha_conta(self.frame, self.dados, self.usuario)
+
+	def cancela(self):
+		from Classe_Cancelamento import Cancelamento
+		if hasattr(self, 'menu'):
+			self.menu.destroy()
+		if hasattr(self,'frame'):
+			self.frame.destroy()
+		self.frame=Frame(self.janela)
+		self.frame.pack(padx=0, pady=15)
+		A= Cancelamento(self.frame, self.dados)
