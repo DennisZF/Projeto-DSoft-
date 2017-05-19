@@ -47,7 +47,7 @@ class Menu_principal:
 			self.frame.destroy()
 		self.frame =Frame(self.janela)
 		self.frame.pack(side = LEFT, anchor ='n')
-		self.menu = Frame(self.janela)
+		self.menu = Frame(self.janela, width=1366,height=700)
 		self.menu.pack(side = RIGHT, padx = 30)
 		C = Calendario(self.frame, self.dados, self.menu) 
 	
@@ -57,7 +57,7 @@ class Menu_principal:
 			self.menu.destroy()
 		if hasattr(self,'frame'):
 			self.frame.destroy()
-		self.frame=Frame(self.janela)
+		self.frame=Frame(self.janela, width=1366,height=700)
 		self.frame.pack(padx=0, pady=15)
 		selecoes= Agendamento(self.frame)
 		
@@ -69,7 +69,7 @@ class Menu_principal:
 			self.frame.destroy()
 		self.menu=Frame (cursor="hand2")
 		self.menu.pack(side=LEFT)
-		self.frame=Frame(self.janela)
+		self.frame=Frame(self.janela, width=1366,height=700)
 		self.frame.pack(padx=0, pady=15)
 		I=Instrucoes(self.frame, self.dados, self.menu)
 	
