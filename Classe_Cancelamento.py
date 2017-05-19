@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import messagebox
 class Cancelamento:
 	def __init__(self, frame, dados):
 		self.frame = frame
@@ -44,4 +45,11 @@ class Cancelamento:
 	def cancela(self):
 		confirma = messagebox.askquestion("Confirmação de envio", "Tem certeza que deseja cancelar a reserva do dia {} às {} no {}?".format(self.data, self.combo4.get(), self.combo.get()))
 		if confirma == 'yes':
-			self.dados.cancelahorario(self.data, self.combo4.get(), self.combo.get())
+			try:
+				if self.dados.dados[1]==self.dados.horarios[self.data][self.combo4.get()][self.combo.get()]["nome"]:
+					self.dados.cancelahorario(self.data, self.combo4.get(), self.combo.get())
+				else: 
+					erro = messagebox.showerror("Erro","Não há um horário registrado em seu nome")
+			except:
+				erro2 = messagebox.showerror("Erro","Não há nenhum agendamento compatível")
+			
