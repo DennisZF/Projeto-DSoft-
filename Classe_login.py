@@ -30,7 +30,7 @@ class Login:
 		self.senha.pack()																			#Segurança: o que o usuário digitar ira aparecer como "*" na tela
 		
 		#Botão para entrar:
-		entrar = Button( self.janela, text="Entrar", height =2,width = 9,bg= 'Red4',fg= 'Black',command=self.entrar, font =("Helvetica", 16, 'bold'))
+		entrar = Button( self.janela, text="Entrar", height =2,width = 9,bg= 'Red4',fg= 'Black',command=self.entrar, font =("Helvetica", 16, 'bold'),cursor="hand2")
 		self.janela.bind("<Return>", self.entrar)
 		entrar.pack(side=BOTTOM, pady=15)
 		
@@ -57,7 +57,7 @@ class Login:
 		if verifica == True:
 			from Classe_Menu_principal import Menu_principal
 			self.janela.destroy()				#Fecha a janela de login
-			abre= Menu_principal(self.dados)				#Abre a janela principal
+			abre= Menu_principal(self.dados, u)				#Abre a janela principal
 		else:
 			if hasattr(self, 'erro'):
 				self.erro.destroy()
