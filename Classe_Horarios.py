@@ -26,10 +26,9 @@ class Horarios:
 
 		else:
 			if data in self.dados.horarios.keys():
-				for i in range(len(self.dados.horarios[data])):
-					for hora in self.dados.horarios[data][i]:
-							for z in range(len(self.dados.horarios[data][i][hora])):
-								self.tree.insert('', 'end', text=hora, values=(self.dados.horarios[data][i][hora][z]["setor"], self.dados.horarios[data][i][hora][z]["nome"], self.dados.horarios[data][i][hora][z]["numero de pessoas"], self.dados.horarios[data][i][hora][z]["tempo"]))
+				for hora in self.dados.horarios[data]:
+						for setor in self.dados.horarios[data][hora]:
+							self.tree.insert('', 'end', text=hora, values=(setor, self.dados.horarios[data][hora][setor]["nome"], self.dados.horarios[data][hora][setor]["numero de pessoas"], self.dados.horarios[data][hora][setor]["tempo"]))
 
 	def novadata(self,item,data, dados, menu):
 		self.tree.destroy()
