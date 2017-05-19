@@ -61,14 +61,14 @@ class Cadastro:
 			self.repete.grid(row=17, column = 1) 
 			
 			#Botão enviar
-			enviar = Button( self.pagina_nova, text="Enviar",width = 9,bg= 'Red4',fg= 'Black',command=self.envia, font =("Helvetica", 16, 'bold'))
+			enviar = Button( self.pagina_nova, text="Enviar",width = 9,bg= 'Red4',fg= 'Black',command=self.envia, font =("Helvetica", 16, 'bold'),cursor="hand2")
 			enviar.grid(rowspan = 19, column = 1, pady=5)
 			
 		#------- Função -------
 		def envia(self):
 			tudo = self.preenchido()
 			if tudo == True:
-				self.dados.addusuario(self.usuario.get(), self.senha.get(),self.nome.get(), self.semestre.get(), self.matricula.get(), self.email.get())
+				self.dados.addusuario(self.usuario.get(), self.senha.get(),self.nome.get(),self.curso.get(), self.semestre.get(), self.matricula.get(), self.email.get())
 				self.pagina_nova.destroy()
 			else:
 				for info in tudo:
@@ -79,7 +79,7 @@ class Cadastro:
 			
 		def preenchido(self):
 			vazios=[]
-			for x in [self.usuario, self.senha, self.nome, self.semestre, self.matricula, self.email, self.repete, self.curso]:
+			for x in [self.usuario, self.senha, self.nome,self.curso, self.semestre, self.matricula, self.email, self.repete, self.curso]:
 				a = x.get()
 				if a == "":
 					vazios.append(x)
