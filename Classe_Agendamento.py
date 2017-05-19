@@ -29,7 +29,7 @@ class Agendamento:
 		self.combo['values']=('Fresadora','Impressora 3D','Costura','Marcenaria','Eletrônica')
 		self.combo.current(0) #default é o primeiro termo
 
-		self.escolha3= Label(frame, text=" Você sabe utilizar esse setor sozinho? ", font=("Helvetica", 8, 'bold'))   #pergunta
+		self.escolha3= Label(frame, text=" Você sabe utilizar este setor sozinho? ", font=("Helvetica", 8, 'bold'))   #pergunta
 		self.escolha3.grid(row=6, column=2, padx= 10)
 		self.combo2=ttk.Combobox(frame)    #combobox de seleção
 		self.combo2.grid(row=7, column=2, padx= 10)
@@ -78,7 +78,7 @@ class Agendamento:
 				if 	datetime.datetime(ano, mes, dia).strftime("%A") == "Thursday":
 					if hasattr(self,'notifica'):
 						self.notifica.destroy()
-					self.notifica= Label(self.frame, text="Não é possível agendar horários de Quinta-feira",fg= 'red', justify=CENTER,font=("Helvetica", 10, 'bold'))					#"Texto que se refere ao link
+					self.notifica= Label(self.frame, text="Não é possível agendar horários de Quinta-feira",fg= 'red', justify=CENTER,font=("Helvetica", 10, 'bold'))	#"Texto que se refere ao link
 					self.notifica.grid(row = 2,column=1)
 				else:
 					if self.combo2.get() == 'não':
@@ -90,7 +90,7 @@ class Agendamento:
 			else:
 				if hasattr(self,'notifica'):
 					self.notifica.destroy()
-				self.notifica= Label(self.frame, text="Preencha todos os campos",fg= 'red', justify=CENTER,font=("Helvetica", 15, 'bold'))					#"Texto que se refere ao link
+				self.notifica= Label(self.frame, text="Preencha todos os campos",fg= 'red', justify=CENTER,font=("Helvetica", 15, 'bold'))			#"Texto que se refere ao link
 				self.notifica.grid(row = 2,column=1)
 	def preenchido(self):
 		vazio=[]
