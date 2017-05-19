@@ -12,8 +12,8 @@ class Calendario:
 		
 		from Classe_Calendar2 import Calendar2
 	
-		titulo = Label(frame, text="Calendário", height=1 ,font=("Helvetica", 25, 'bold'))
-		titulo.pack(side= TOP)
+		titulo = Label(frame, text="Calendário", height=1 ,font=("Helvetica", 30, 'bold'))
+		titulo.pack(side= TOP, pady=25)
 		
 		data = Label(frame, text="Escolha a data que deseja visualizar", height=1 ,font=("Helvetica", 13, 'bold'))
 		data.pack(side = TOP)
@@ -22,7 +22,7 @@ class Calendario:
 		self.escolha.pack(side = TOP, pady= 15)
 		
 		calendario = Calendar2(frame)
-		calendario.pack(side = LEFT, padx= 20, pady = 30)
+		calendario.pack(side = TOP)
 		
 		
 		calendario.quando_selecionada(self.atualiza)
