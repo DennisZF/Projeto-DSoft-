@@ -67,7 +67,7 @@ class Minha_conta:
 		self.senha.grid(row=15, column = 1,pady = 10, padx=10) 
 		
 		
-		self.editar = Button(self.frame, height= 2 , width = 15, text = 'Editar', font = ('Helvetica', 12), bg='tomato', command = self.edit)
+		self.editar = Button(self.frame, height= 2 , width = 15, text = 'Editar', font = ('Helvetica', 12), bg='tomato', command = self.edit,cursor="hand2")
 		self.editar.grid(row=9, column = 4, padx = 20)
 	def salvar(self):
 		tudo = self.preenchido()
@@ -77,7 +77,7 @@ class Minha_conta:
 			for x in [self.usuario, self.senha, self.nome,self.curso, self.semestre, self.matricula, self.email, self.curso]:
 				x.configure(state = 'disabled')
 			self.salva.destroy()
-			self.editar = Button(self.frame, height= 2 , width = 15, text = 'Editar', font = ('Helvetica', 12), bg='tomato', command = self.edit)
+			self.editar = Button(self.frame, height= 2 , width = 15, text = 'Editar', font = ('Helvetica', 12), bg='tomato', command = self.edit,cursor="hand2")
 			self.editar.grid(row=9, column = 4, padx = 20)
 		else:
 			for info in tudo:
@@ -99,5 +99,5 @@ class Minha_conta:
 		for x in [self.usuario, self.senha, self.nome,self.curso, self.semestre, self.matricula, self.email, self.curso]:
 			x.configure(state = 'normal')
 		self.editar.destroy()
-		self.salva = Button(self.frame, height = 2, width = 25, text='Salvar alterações',font = ('Helvetica', 12), bg='tomato', command = self.salvar)
+		self.salva = Button(self.frame, height = 2, width = 25, text='Salvar alterações',font = ('Helvetica', 12), bg='tomato', command = self.salvar,cursor="hand2")
 		self.salva.grid(row= 9, column = 4, padx = 20)
