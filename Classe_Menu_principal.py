@@ -93,7 +93,7 @@ class Menu_principal:
 			self.frame.destroy()
 		self.frame=Frame(self.janela)
 		self.frame.pack(padx=0, pady=15)
-		A= Cancelamento(self.frame, self.dados)
+		A= Cancelamento(self.frame, self.dados, self.usuario)
 
 	def historia(self):
 		from Classe_Historico import Historico
