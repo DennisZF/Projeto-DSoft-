@@ -12,8 +12,8 @@ class Horarios:
 
 		self.tree = ttk.Treeview(columns=('Setor', 'Nome', 'Quantidade de pessoas', 'Tempo agendado'))
 		self.tree.heading('#0', text='Horário')
-		self.tree.heading('#1', text='Setor')
-		self.tree.heading('#2', text='Nome')
+		self.tree.heading('#1', text='Se')
+		self.tree.heading('#2', text='Ntorome')
 		self.tree.heading('#3', text='Quantidade de pessoas')
 		self.tree.heading('#4', text='Tempo agendado')
 		self.tree.grid(column=0, row=0, sticky='nsew', in_=menu)
@@ -21,7 +21,7 @@ class Horarios:
 		menu.grid_rowconfigure(0, weight=1)
 		
 		if 	datetime.datetime(ano, mes, dia).strftime("%A") == "Thursday":
-			self.tree.insert('', 'end', text = "   Não é possível", values =("fazer agendamentos", "de Quinta-feira"),tag='monospace')
+			self.tree.insert('', 'end', text = "   Não é possível", values =("fazer agendamentos", "no dia aberto"),tag='monospace')
 			self.tree.tag_configure('monospace', font='courier')
 
 		else:

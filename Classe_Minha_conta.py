@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import messagebox
 
 class Minha_conta:
 	def __init__(self, frame,dados, usuario):
@@ -59,15 +60,17 @@ class Minha_conta:
 		self.usuario.grid(row=13, column = 1,pady = 10, padx=10) 
 			
 		#Senha
-		pede_senha = Label(self.frame, text="Senha:", height=1 ,font=("Helvetica", 14))
-		pede_senha.grid(row=15, column = 0,pady = 10)
-		self.senha = Entry(self.frame, width= 25, font=('Helvetica',14))
-		self.senha.insert(END, self.dados[0])
-		self.senha.configure(state = 'disabled',disabledbackground= "NavajoWhite", disabledforeground= 'Peru')
-		self.senha.grid(row=15, column = 1,pady = 10, padx=10) 
+#		pede_senha = Label(self.frame, text="Senha:", height=1 ,font=("Helvetica", 14))
+#		pede_senha.grid(row=15, column = 0,pady = 10)
+#		self.senha = Entry(self.frame, width= 25, font=('Helvetica',14))
+#		self.senha.insert(END, self.dados[0])
+#		self.senha.configure(state = 'disabled',disabledbackground= "NavajoWhite", disabledforeground= 'Peru')
+#		self.senha.grid(row=15, column = 1,pady = 10, padx=10) 
 		
+		self.altera = Button(self.frame, height = 2,width= 20, text = 'Alterar senha', font = ('Helvetica',12), bg = 'tomato', command= self.alterar, cursor = 'hand2')
+		self.altera.grid( row = 5, column = 4, padx = 15)
 		
-		self.editar = Button(self.frame, height= 2 , width = 15, text = 'Editar', font = ('Helvetica', 12), bg='tomato', command = self.edit,cursor="hand2")
+		self.editar = Button(self.frame, height= 2 , width = 20, text = 'Editar', font = ('Helvetica', 12), bg='tomato', command = self.edit,cursor="hand2")
 		self.editar.grid(row=9, column = 4, padx = 20)
 	def salvar(self):
 		tudo = self.preenchido()
@@ -101,3 +104,28 @@ class Minha_conta:
 		self.editar.destroy()
 		self.salva = Button(self.frame, height = 2, width = 25, text='Salvar alterações',font = ('Helvetica', 12), bg='tomato', command = self.salvar,cursor="hand2")
 		self.salva.grid(row= 9, column = 4, padx = 20)
+		
+	def alterar(self):
+		self.popup = Tk()
+		self.popup.title("Confirmação de senha")
+		self.pede = Label(self.popup, text = "Digite sua senha atual:", font=('Helvetica', 13))
+		self.pede.grid(row = 0, column = 0, pady = 20, padx = 10)
+		
+		self.senha = Entry(self.popup, font = ('Helvetica', 13), show = '*')
+		self.senha.grid(row = 0, column = 1, pady = 20, padx = 10)
+		
+		self.confirma = Button(self.popup, text = 'Enviar', height = 1, width = 15, font = ('Helvetica', 15), bg = 'Red4', command = self.confirmacao)
+		self.confirma.grid(row = 2 ,column = 0, columnspan = 2 , padx = 10, pady = 10)
+		
+	def confirmacao(self):
+		if self.senha.get() == self.data.usuarios[self.user]:
+			self.popup.destroy()
+			for child in self.frame.winfo_children():
+				child.destroy()
+			from Classe_Alteracao_de_senha import Alteracao_de_senha
+			alt = Alteracao_de_senha(self.frame, self.data, self.user)
+		else: 
+			erro = messagebox.showerror("Erro","Senha incorreta")
+			self.popup.destroy()
+			self.alterar()
+			
