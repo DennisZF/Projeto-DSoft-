@@ -52,7 +52,7 @@ class Cancelamento:
 					for child in self.frame.winfo_children():
 								child.destroy()
 					self.sucesso = Label(self.frame, text = "Seu cancelamento foi realizado com sucesso!", font = ("Helvetica", 15, 'bold'))
-					self.sucesso.grid(row = 4, rowspan = 3, columnspan= 2)
+					self.sucesso.grid(row = 4, rowspan = 3, columnspan= 2, pady=30)
 				else: 
 					erro = messagebox.showerror("Erro","Não há um horário registrado em seu nome")
 			except:
