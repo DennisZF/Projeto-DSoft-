@@ -21,51 +21,64 @@ class Instrucoes:
 		self.impressoralaser=Button(menu, text="Impressora Laser",height = 1,width = 25,bg= 'Maroon', fg='Black', font =("Helvetica", 10, 'bold'),command=self.laser).pack(side=TOP)
 		self.milena=Button(menu, text="MILENA",height = 1,width = 25,bg= 'Maroon', fg='Black', font =("Helvetica", 10, 'bold'),command=self.milena).pack(side=TOP)
 		self.fresadora=Button(menu, text="Fresadora",height = 1,width = 25,bg= 'Maroon', fg='Black', font =("Helvetica", 10, 'bold'),command=self.fresadora).pack(side=TOP)
-		
 	
 	def vinil(self):
+		if hasattr(self, "img"):
+			self.img.destroy()
 		photo=PhotoImage(file="Vinil.PNG")
-		img=Label(image=photo)
-		img.image=photo
-		img.pack(fill=BOTH, expand=2)
+		self.img=Label(self.frame, image=photo)
+		self.img.image=photo
+		self.img.pack(fill=BOTH, expand=2)
 
 	def impressora3d(self):
+		if hasattr(self, "img"):
+			self.img.destroy()
 		photo=PhotoImage(file="Setor Complexo.PNG")
-		img=Label(image=photo)
-		img.image=photo
-		img.pack(fill=BOTH, expand=2)
+		self.img=Label(self.frame, image=photo)
+		self.img.image=photo
+		self.img.pack(fill=BOTH, expand=2)
 
 	def marcenaria(self):
+		if hasattr(self, "img"):
+			self.img.destroy()
 		photo=PhotoImage(file="Setor Complexo.PNG")
-		img=Label(image=photo)
-		img.image=photo
-		img.pack(fill=BOTH, expand=2)
+		self.img=Label(self.frame, image=photo)
+		self.img.image=photo
+		self.img.pack(fill=BOTH, expand=2)
 	
 
 	def fresadora(self):
+		if hasattr(self, "img"):
+			self.img.destroy()
 		photo=PhotoImage(file="Fresadora.PNG")
-		img=Label(image=photo)
-		img.image=photo
-		img.pack(fill=BOTH, expand=2)
+		self.img=Label(self.frame, image=photo)
+		self.img.image=photo
+		self.img.pack(fill=BOTH, expand=2)
 		
 
 	def laser(self):
+		if hasattr(self, "img"):
+			self.img.destroy()
 		photo=PhotoImage(file="Laser.PNG")
-		img=Label(image=photo)
-		img.image=photo
-		img.pack(fill=BOTH, expand=2)
+		self.img=Label(self.frame, image=photo)
+		self.img.image=photo
+		self.img.pack(fill=BOTH, expand=2)
 		
 
 	def costura(self):
+		if hasattr(self, "img"):
+			self.img.destroy()
 		photo=PhotoImage(file="Setor Complexo.PNG")
-		img=Label(image=photo)
-		img.image=photo
-		img.pack(fill=BOTH, expand=2)
+		self.img=Label(self.frame, image=photo)
+		self.img.image=photo
+		self.img.pack(fill=BOTH, expand=2)
 	 
 
 	def milena(self):
+		if hasattr(self, "img"):
+			self.img.destroy()
 		photo=PhotoImage(file="Vinil.PNG")
-		img=Label(image=photo)
-		img.image=photo
-		img.pack(side=RIGHT)
+		self.img=Label(self.frame, image=photo)
+		self.img.image=photo
+		self.img.pack(side=RIGHT)
 	
