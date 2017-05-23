@@ -19,11 +19,11 @@ class Menu_principal:
 		canto.pack(side = TOP)
 		
 		#Botões:
-		self.calendario =Button(canto, text="Calendário",height = 1,width = 25,bg= 'Maroon', fg='Black',command= self.calendar, font =("Helvetica", 10, 'bold')).pack(side=LEFT)
+		self.calendario =Button(canto, text="Calendário",height = 1,width = 25,bg= 'Maroon', fg='White',command= self.calendar, font =("Helvetica", 10, 'bold')).pack(side=LEFT)
 		self.agendamento = Button(canto, text="Agendamento",height = 1, width =25, bg='Tomato',fg='Black',command= self.agenda,font =("Helvetica", 10, 'bold')).pack(side=LEFT)
-		self.cancelamento = Button(canto, text="Cancelamento",height = 1,width = 25,bg= 'Maroon',fg='Black',font =("Helvetica", 10, 'bold'), command= self.cancela).pack(side=LEFT)
+		self.cancelamento = Button(canto, text="Cancelamento",height = 1,width = 25,bg= 'Maroon',fg='White',font =("Helvetica", 10, 'bold'), command= self.cancela).pack(side=LEFT)
 		self.instrucoes = Button(canto, text="Instruções",height = 1,width = 25, bg='Tomato',fg='Black',font =("Helvetica", 10, 'bold'), command=self.instrucoes).pack(side=LEFT)
-		self.historico = Button(canto, text="Histórico", height =1,width = 25,bg= 'Maroon',fg='Black',font =("Helvetica", 10, 'bold'),command=self.historia).pack(side=LEFT)
+		self.historico = Button(canto, text="Histórico", height =1,width = 25,bg= 'Maroon',fg='White',font =("Helvetica", 10, 'bold'),command=self.historia).pack(side=LEFT)
 		self.minha_conta =Button(canto, text="Minha Conta",height = 1,width = 25,bg= 'Tomato', fg='Black',font =("Helvetica", 10, 'bold'), command= self.conta).pack(side=LEFT)
 		self.sair = Button(canto, text="Sair", height =1, width =15,bg= 'black',fg= 'White',command= self.sai,font =("Helvetica", 10, 'bold')).pack(side=LEFT)
 		
