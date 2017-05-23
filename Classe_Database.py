@@ -4,7 +4,9 @@ class Database:
 	#Seria melhor se houvesse um dicionario com esses dados online
 		self.usuarios = {}
 		self.dados = {}
-		self.horarios = {}#16/05/2017":{"08:00": {"fresadora":{"nome":"joao"  , "numero de pessoas":3, "tempo": 2},"3d":{"nome":"maria"  , "numero de pessoas":1, "tempo": 3}}}} #], "15:00" : [{"nome":"joao" , "setor": "fresadora" , "numero de pessoas":3, "tempo":2},{"nome":"maria" , "setor": "3d" , "numero de pessoas":1, "tempo": 1} ]},"18/05/2017":[{"08:00": [{"nome":"joao" , "setor": "fresadora" , "numero de pessoas":3,"tempo":4},{"nome":"maria" , "setor": "3d" , "numero de pessoas":1, "tempo":2} ]}, {"15:00" : [{"nome":"joao" , "setor": "fresadora" , "numero de pessoas":3, "tempo":2},{"nome":"maria" , "setor": "3d" , "numero de pessoas":1, "tempo":2} ]}]}
+		self.horarios = {} #16/05/2017":{"08:00": {"fresadora":{"nome":"joao"  , "numero de pessoas":3, "tempo": 2},"3d":{"nome":"maria"  , "numero de pessoas":1, "tempo": 3}}}} #], "15:00" : [{"nome":"joao" , "setor": "fresadora" , "numero de pessoas":3, "tempo":2},{"nome":"maria" , "setor": "3d" , "numero de pessoas":1, "tempo": 1} ]},"18/05/2017":[{"08:00": [{"nome":"joao" , "setor": "fresadora" , "numero de pessoas":3,"tempo":4},{"nome":"maria" , "setor": "3d" , "numero de pessoas":1, "tempo":2} ]}, {"15:00" : [{"nome":"joao" , "setor": "fresadora" , "numero de pessoas":3, "tempo":2},{"nome":"maria" , "setor": "3d" , "numero de pessoas":1, "tempo":2} ]}]}
+		self.historia = {}
+
 	def addusuario(self, usuario, senha, nome, curso, semestre, matricula, email):
 		self.usuarios[usuario] = senha
 		self.dados[usuario] = [senha, nome, curso, semestre, matricula, email]
@@ -30,5 +32,9 @@ class Database:
 		self.horarios[data][hora][setor]["numero de pessoas"]= pessoas
 		self.horarios[data][hora][setor]["tempo"]= tempo
 		
+		self.historia[data] = self.horarios[data]
+
+
 	def cancelahorario(self,data,hora, setor):
 		del self.horarios[data][hora][setor]
+
