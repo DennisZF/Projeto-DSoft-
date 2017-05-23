@@ -26,7 +26,7 @@ class Agendamento:
 		self.escolha2.grid(row=3, column=2, padx= 10)     #instrução
 		self.combo=ttk.Combobox(frame)
 		self.combo.grid(row=4, column=2, padx= 10)  #combobox de seleção
-		self.combo['values']=('Fresadora','Impressora 3D','Costura','Marcenaria','Eletrônica')
+		self.combo['values']=('--Selecione--','Fresadora','Impressora 3D','Costura','Marcenaria','Eletrônica')
 		self.combo.bind('<<ComboboxSelected>>', self.atualiza_setor)
 		self.combo.current(0) #default é o primeiro termo
 
@@ -48,7 +48,7 @@ class Agendamento:
 		self.escolha6.grid(row=3, column=3, padx= 10)
 		self.combo5=ttk.Combobox(frame)       #combobox de seleção
 		self.combo5.grid(row=4, column=3, padx= 10)
-		#default é o primeiro termo
+		
 		
 		
 		self.escolha5= Label(frame, text=" Selecione um horário de início ", font=("Helvetica",8, 'bold'))     #instrução
@@ -97,14 +97,14 @@ class Agendamento:
 							for child in self.frame.winfo_children():
 								child.destroy()
 							self.sucesso = Label(self.frame, text = "Seu agendamento foi realizado com sucesso!", font = ("Helvetica", 15, 'bold'))
-							self.sucesso.grid(row = 4, rowspan = 3, columnspan= 2)
-							self.sucesso2 = Label(self.frame, text = "Dia:{}".format(self.data), font = ("Helvetica", 15, 'bold'))
+							self.sucesso.grid(row = 4, rowspan = 3, pady = 30)
+							self.sucesso2 = Label(self.frame, text = "Dia: {}".format(self.data), font = ("Helvetica", 12, 'bold'))
 							self.sucesso2.grid(row = 10)
-							self.sucesso3 = Label(self.frame, text = "Setor:{}".format(setor), font = ("Helvetica", 15, 'bold'))
+							self.sucesso3 = Label(self.frame, text = "Setor: {}".format(setor), font = ("Helvetica", 12, 'bold'))
 							self.sucesso3.grid(row = 11)
-							self.sucesso4 = Label(self.frame, text = "Horário:{}".format(hora), font = ("Helvetica", 15, 'bold'))
+							self.sucesso4 = Label(self.frame, text = "Horário: {}".format(hora), font = ("Helvetica", 12, 'bold'))
 							self.sucesso4.grid(row = 12)
-							self.sucesso5 = Label(self.frame, text = "Tempo agendado:{}".format(tempo), font = ("Helvetica", 15, 'bold'))
+							self.sucesso5 = Label(self.frame, text = "Tempo agendado: {}".format(tempo), font = ("Helvetica", 12, 'bold'))
 							self.sucesso5.grid(row = 13)
 			else:
 				if hasattr(self,'notifica'):
@@ -117,7 +117,7 @@ class Agendamento:
 			vazio.append("data")
 		if self.combo4.get() not in self.combo4['values']:
 			vazio.append("combo4")
-		if self.combo.get() not in self.combo['values']:
+		if self.combo.get() not in self.combo['values'] or self.combo.get() == '--Selecione--':
 			vazio.append("setor")
 		if self.combo3.get() not in self.combo3['values']:
 			vazio.append("pessoas")
