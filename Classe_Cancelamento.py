@@ -49,6 +49,10 @@ class Cancelamento:
 			try:
 				if self.dados.dados[self.usuario][1]==self.dados.horarios[self.data][self.combo4.get()][self.combo.get()]["nome"]:
 					self.dados.cancelahorario(self.data, self.combo4.get(), self.combo.get())
+					for child in self.frame.winfo_children():
+								child.destroy()
+					self.sucesso = Label(self.frame, text = "Seu cancelamento foi realizado com sucesso!", font = ("Helvetica", 15, 'bold'))
+					self.sucesso.grid(row = 4, rowspan = 3, columnspan= 2)
 				else: 
 					erro = messagebox.showerror("Erro","Não há um horário registrado em seu nome")
 			except:
