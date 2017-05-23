@@ -30,7 +30,7 @@ class Login:
 		self.senha.pack()																			#Segurança: o que o usuário digitar ira aparecer como "*" na tela
 		
 		#Botão para entrar:
-		entrar = Button( self.janela, text="Entrar", height =2,width = 9,bg= 'Red4',fg= 'Black',command=self.entrar, font =("Helvetica", 16, 'bold'),cursor="hand2")
+		entrar = Button( self.janela, text="Entrar", height =2,width = 9,bg= 'Red4',fg= 'white',command=self.entrar, font =("Helvetica", 16, 'bold'),cursor="hand2")
 		self.janela.bind("<Return>", self.entrar)
 		entrar.pack(side=BOTTOM, pady=15)
 		
