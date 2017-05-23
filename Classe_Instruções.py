@@ -30,13 +30,13 @@ class Instrucoes:
 		img.pack(fill=BOTH, expand=2)
 
 	def impressora3d(self):
-		photo=PhotoImage(file=".PNG")
+		photo=PhotoImage(file="Setor Complexo.PNG")
 		img=Label(image=photo)
 		img.image=photo
 		img.pack(fill=BOTH, expand=2)
 
 	def marcenaria(self):
-		photo=PhotoImage(file=".PNG")
+		photo=PhotoImage(file="Setor Complexo.PNG")
 		img=Label(image=photo)
 		img.image=photo
 		img.pack(fill=BOTH, expand=2)
@@ -57,7 +57,7 @@ class Instrucoes:
 		
 
 	def costura(self):
-		photo=PhotoImage(file=".PNG")
+		photo=PhotoImage(file="Setor Complexo.PNG")
 		img=Label(image=photo)
 		img.image=photo
 		img.pack(fill=BOTH, expand=2)
