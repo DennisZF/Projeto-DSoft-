@@ -15,43 +15,43 @@ class Agendamento:
 		calendario = Calendar2(frame)  #calendário para escolha de datas
 		calendario.grid(row = 4, rowspan=4, column=1, padx= 10)
 		
-		self.escolher = Label(frame, text=" Selecione uma data ",font=("Helvetica", 8, 'bold'))    #instrução
+		self.escolher = Label(frame, text="1. Selecione uma data ",font=("Helvetica", 8, 'bold'))    #instrução
 		self.escolher.grid(row=3, column=1, padx= 10)
 		
 		self.escolha = Label(frame,font=("Helvetica", 8, 'bold'))    #instrução
 		self.escolha.grid(row=8, column=1, padx= 10)
 		selecao = calendario.quando_selecionada(self.atualiza_calendario)		#pega a seleção e guarda numa variável
 		
-		self.escolha2= Label(frame, text=" Selecione um setor do FabLab ", font=("Helvetica",8, 'bold'))
+		self.escolha2= Label(frame, text="2.  Selecione um setor do FabLab ", font=("Helvetica",8, 'bold'))
 		self.escolha2.grid(row=3, column=2, padx= 10)     #instrução
 		self.combo=ttk.Combobox(frame)
 		self.combo.grid(row=4, column=2, padx= 10)  #combobox de seleção
-		self.combo['values']=('--Selecione--','Fresadora','Impressora 3D','Costura','Marcenaria','Eletrônica')
+		self.combo['values']=('---Selecione---','Fresadora','Impressora 3D','Costura','Marcenaria','Eletrônica')
 		self.combo.bind('<<ComboboxSelected>>', self.atualiza_setor)
 		self.combo.current(0) #default é o primeiro termo
 
-		self.escolha3= Label(frame, text=" Você sabe utilizar este setor sozinho? ", font=("Helvetica", 8, 'bold'))   #pergunta
+		self.escolha3= Label(frame, text="6. Você sabe utilizar este setor sozinho? ", font=("Helvetica", 8, 'bold'))   #pergunta
 		self.escolha3.grid(row=6, column=3, padx= 10)
 		self.combo2=ttk.Combobox(frame)    #combobox de seleção
 		self.combo2.grid(row=7, column=3, padx= 10)
 		self.combo2['values']=('sim','não')
 		self.combo2.current(1) #default é o segundo termo
 
-		self.escolha4= Label(frame, text=" Selecione o número de pessoas ", font=("Helvetica", 8, 'bold'))     #instrução
+		self.escolha4= Label(frame, text="5.  Selecione o número de pessoas ", font=("Helvetica", 8, 'bold'))     #instrução
 		self.escolha4.grid(row=6, column=2, padx= 10)
 		self.combo3=ttk.Combobox(frame)       #combobox de seleção
 		self.combo3.grid(row=7, column=2, padx= 10)
 		self.combo3['values']=('1','2','3','4','5','6')
 		self.combo3.current(0) #default é o primeiro termo
 		
-		self.escolha6= Label(frame, text=" Selecione o tempo necessaário: ", font=("Helvetica",8, 'bold'))     #instrução
+		self.escolha6= Label(frame, text="3.  Selecione o tempo necessaário: ", font=("Helvetica",8, 'bold'))     #instrução
 		self.escolha6.grid(row=3, column=3, padx= 10)
 		self.combo5=ttk.Combobox(frame)       #combobox de seleção
 		self.combo5.grid(row=4, column=3, padx= 10)
 		
 		
 		
-		self.escolha5= Label(frame, text=" Selecione um horário de início ", font=("Helvetica",8, 'bold'))     #instrução
+		self.escolha5= Label(frame, text="4. Selecione um horário de início ", font=("Helvetica",8, 'bold'))     #instrução
 		self.escolha5.grid(row=4, column=4, padx= 10)
 		self.combo4=ttk.Combobox(frame)       #combobox de seleção
 		self.combo4.grid(row=5, column=4, padx= 10)
@@ -117,7 +117,7 @@ class Agendamento:
 			vazio.append("data")
 		if self.combo4.get() not in self.combo4['values']:
 			vazio.append("combo4")
-		if self.combo.get() not in self.combo['values'] or self.combo.get() == '--Selecione--':
+		if self.combo.get() not in self.combo['values'] or self.combo.get() == '----Selecione----':
 			vazio.append("setor")
 		if self.combo3.get() not in self.combo3['values']:
 			vazio.append("pessoas")
