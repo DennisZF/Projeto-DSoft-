@@ -59,13 +59,7 @@ class Minha_conta:
 		self.usuario.configure(state = 'disabled',disabledbackground= "NavajoWhite", disabledforeground= 'Peru')
 		self.usuario.grid(row=13, column = 1,pady = 10, padx=10) 
 			
-		#Senha
-#		pede_senha = Label(self.frame, text="Senha:", height=1 ,font=("Helvetica", 14))
-#		pede_senha.grid(row=15, column = 0,pady = 10)
-#		self.senha = Entry(self.frame, width= 25, font=('Helvetica',14))
-#		self.senha.insert(END, self.dados[0])
-#		self.senha.configure(state = 'disabled',disabledbackground= "NavajoWhite", disabledforeground= 'Peru')
-#		self.senha.grid(row=15, column = 1,pady = 10, padx=10) 
+
 		
 		self.altera = Button(self.frame, height = 2,width= 20, text = 'Alterar senha', font = ('Helvetica',12), bg = 'tomato', command= self.alterar, cursor = 'hand2')
 		self.altera.grid( row = 5, column = 4, padx = 15)
@@ -89,7 +83,7 @@ class Minha_conta:
 				self.notifica.grid(row = 2, columnspan = 2)
 	def preenchido(self):
 		vazios=[]
-		for x in [self.usuario, self.senha, self.nome,self.curso, self.semestre, self.matricula, self.email, self.curso]:
+		for x in [self.usuario, self.nome,self.curso, self.semestre, self.matricula, self.email, self.curso]:
 			a = x.get()
 			if a == "":
 				vazios.append(x)
@@ -99,7 +93,7 @@ class Minha_conta:
 			return vazios
 			
 	def edit(self):
-		for x in [self.usuario, self.senha, self.nome,self.curso, self.semestre, self.matricula, self.email, self.curso]:
+		for x in [self.usuario, self.nome,self.curso, self.semestre, self.matricula, self.email, self.curso]:
 			x.configure(state = 'normal')
 		self.editar.destroy()
 		self.salva = Button(self.frame, height = 2, width = 25, text='Salvar alterações',font = ('Helvetica', 12), bg='tomato', command = self.salvar,cursor="hand2")
