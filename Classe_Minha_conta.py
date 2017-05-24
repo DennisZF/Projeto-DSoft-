@@ -108,7 +108,7 @@ class Minha_conta:
 		self.senha = Entry(self.popup, font = ('Helvetica', 13), show = '*')
 		self.senha.grid(row = 0, column = 1, pady = 20, padx = 10)
 		
-		self.confirma = Button(self.popup, text = 'Enviar', height = 1, width = 15, font = ('Helvetica', 15), bg = 'Red4', command = self.confirmacao)
+		self.confirma = Button(self.popup, text = 'Enviar', height = 1, width = 15, font = ('Helvetica', 15), fg= 'white', bg = 'Red4', command = self.confirmacao)
 		self.confirma.grid(row = 2 ,column = 0, columnspan = 2 , padx = 10, pady = 10)
 		
 	def confirmacao(self):

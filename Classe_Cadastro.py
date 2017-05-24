@@ -61,7 +61,7 @@ class Cadastro:
 			self.repete.grid(row=17, column = 1) 
 			
 			#Botão enviar
-			enviar = Button( self.pagina_nova, text="Enviar",width = 9,bg= 'Red4',fg= 'Black',command=self.envia, font =("Helvetica", 16, 'bold'),cursor="hand2")
+			enviar = Button( self.pagina_nova, text="Enviar",width = 9,bg= 'Red4',fg= 'white',command=self.envia, font =("Helvetica", 16, 'bold'),cursor="hand2")
 			enviar.grid(rowspan = 19, column = 1, pady=5)
 			
 		#------- Função -------
