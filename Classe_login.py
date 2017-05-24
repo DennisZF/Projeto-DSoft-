@@ -10,21 +10,23 @@ class Login:
 		self.dados = dados
 		
 		#Cabeçalho:	
-		titulo= Label(self.janela, text="FabLab", justify=CENTER, bg = 'white', width = 29, height=3, fg= 'red',font=("Helvetica", 35, 'bold'))
+		foto =PhotoImage(file="ferramentas.PNG")
+		titulo=Label(self.janela, image=foto,width=700, height=170)
+		titulo.image=foto
 		titulo.pack(side = TOP)
 		
 		#--------- Idententificação --------
 		
 		#Usuário:
 		pede_usuario = Label(self.janela, text="Login:", height=1 ,font=("Helvetica", 14))			#"Texto" pedindo o nome de usuário
-		pede_usuario.pack()
+		pede_usuario.pack(pady = 15)
 		
 		self.usuario = Entry(self.janela, width= 25)												#Caixa de texto que recebe o que o usuário digitar
-		self.usuario.pack(padx = 0, pady = 10)
+		self.usuario.pack(padx = 0)
 		
 		#Senha:
 		pede_senha = Label(self.janela, text="Senha:", height=1 ,font=("Helvetica", 14))			#"Texto" pedindo a senha
-		pede_senha.pack()
+		pede_senha.pack(pady=15)
 		
 		self.senha = Entry(self.janela, show="*",width = 25)										#Caixa de texto que a senha recebe o que o usuário digitar
 		self.senha.pack()																			#Segurança: o que o usuário digitar ira aparecer como "*" na tela
