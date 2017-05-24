@@ -9,12 +9,14 @@ class Menu_principal:
 		
 		#------------ Cabeçalho ----------
 		
-		titulo= Label(self.janela, text="FabLab", justify=CENTER, bg = 'white', width = 1366, height=3, fg= 'red',font=("Helvetica", 35, 'bold'))
+		foto =PhotoImage(file="ferramentas.PNG")
+		titulo=Label(self.janela, image=foto,width = 1366, height=200)
+		titulo.image=foto
 		titulo.pack(side = TOP)
 		
 		#------------ Menu ------------
 		
-		#Frame:
+		#Frame menu:
 		canto = Frame(self.janela, relief = SUNKEN, cursor = 'hand2')
 		canto.pack(side = TOP)
 		
@@ -26,6 +28,8 @@ class Menu_principal:
 		self.historico = Button(canto, text="Histórico", height =1,width = 25,bg= 'Maroon',fg='White',font =("Helvetica", 10, 'bold'),command=self.historia).pack(side=LEFT)
 		self.minha_conta =Button(canto, text="Minha Conta",height = 1,width = 25,bg= 'Tomato', fg='Black',font =("Helvetica", 10, 'bold'), command= self.conta).pack(side=LEFT)
 		self.sair = Button(canto, text="Sair", height =1, width =15,bg= 'black',fg= 'White',command= self.sai,font =("Helvetica", 10, 'bold')).pack(side=LEFT)
+		
+	
 		
 	#------- Funções ---------	
 	
