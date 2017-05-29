@@ -4,7 +4,7 @@ class Menu_principal:
 		self.usuario = usuario
 		self.dados = dados
 		self.janela = Tk()	#Abre nova janela
-		self.janela.wm_iconbitmap("icon_bitmap.bmp")
+		self.janela.wm_iconbitmap("icon_bitmap.ico")
 		self.janela.geometry("{0}x{1}+0+0".format(self.janela.winfo_screenwidth(), self.janela.winfo_screenheight()))
 		self.janela.title("Página principal - FabLab Insper")
 		
