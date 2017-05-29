@@ -6,6 +6,7 @@ class Login:
 	def __init__(self, dados):
 		self.janela= Tk()				#Abre a janela
 		self.janela.title("ENTRAR - FabLab Insper")
+		self.janela.wm_iconbitmap("icon_bitmap.ico")
 		
 		self.dados = dados
 		
