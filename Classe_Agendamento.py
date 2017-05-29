@@ -47,6 +47,7 @@ class Agendamento:
 		self.escolha6= Label(frame, text="3.  Selecione o tempo necessaário: ", font=("Helvetica",8, 'bold'))     #instrução
 		self.escolha6.grid(row=3, column=3, padx= 10)
 		self.combo5=ttk.Combobox(frame)       #combobox de seleção
+		self.combo5.bind('<<ComboboxSelected>>', self.atualiza_inicio)
 		self.combo5.grid(row=4, column=3, padx= 10)
 		
 		
@@ -55,8 +56,8 @@ class Agendamento:
 		self.escolha5.grid(row=4, column=4, padx= 10)
 		self.combo4=ttk.Combobox(frame)       #combobox de seleção
 		self.combo4.grid(row=5, column=4, padx= 10)
-		self.combo4['values']=('8:00','8:30','9:00','9:30','10:00','10:30','11:00','11:30','12:00','12:30','14:00','14:30','15:00','15:30','16:00','16:30','17:00','17:30','18:00','18:30')
-		self.combo4.current(0) #default é o primeiro termo
+		#self.combo4['values']=('8:00','8:30','9:00','9:30','10:00','10:30','11:00','11:30','12:00','12:30','14:00','14:30','15:00','15:30','16:00','16:30','17:00','17:30','18:00','18:30')
+		#self.combo4.current(0) #default é o primeiro termo
 		
 		self.frame = frame
 		
@@ -115,7 +116,7 @@ class Agendamento:
 		vazio=[]
 		if self.escolha['text'] == "":
 			vazio.append("data")
-		if self.combo4.get() not in self.combo4['values']:
+		if self.combo4.get() not in self.combo4['values'] or self.combo4.get() == 'Não há mais horários':
 			vazio.append("combo4")
 		if self.combo.get() not in self.combo['values'] or self.combo.get() == '----Selecione----':
 			vazio.append("setor")
@@ -138,10 +139,59 @@ class Agendamento:
 			self.escolha['text'] = x;
 			self.data=x
 			
-			
 	def atualiza_setor(self, event):
 		tempos= {'Fresadora': ['30 min','1h','1h30min','2h','2h30min', '3h'],'Impressora 3D':['30 min','1h','1h30min','2h','2h30min', '3h'],'Costura':['30 min','1h','1h30min','2h'],'Marcenaria':['30 min','1h','1h30min','2h','2h30min', '3h'],'Eletrônica':['30 min','1h','1h30min','2h']}
 		self.combo5['values'] = tempos[self.combo.get()]
 		self.combo5.current(0)	
+	
+	def atualiza_inicio(self,event):
+		comeca = list(self.horario_de_inicio())
+		self.combo4['values'] = comeca
+		self.combo4.current(0)
+	
+	def horario_de_inicio(self):
+		self.inicio = dict(self.dados.horas)
+		setor = self.combo.get()
+		intervalo = {'30 min':50,'1h':100,'1h30min':150,'2h':200,'2h30min':250, '3h':300}
+		if self.data in self.dados.horarios.keys():
+			for hora in self.dados.horas.keys():
+				if hora in self.dados.horarios[self.data].keys():
+					if setor in self.dados.horarios[self.data][hora]:
+						tempo = intervalo[self.dados.horarios[self.data][hora][setor]["tempo"]]
+						inicio = self.dados.horas[hora]
+						horarios = inicio + tempo
+						while inicio < horarios:
+							a = str(inicio)
+							del self.inicio[self.dados.horas_invertido[a]]
+							inicio += 50
+					else:
+						continue
+				else:
+					continue
+		self.fim = dict(self.inicio)
+		for hora2 in self.fim.keys():
+			tempo = intervalo[self.combo5.get()]
+			comecou = self.dados.horas[hora2]
+			fim = comecou + tempo
+			if fim <= 1900:
+					while comecou < fim and len(self.inicio)>0:
+						b=str(comecou)
+						try:
+							tem = self.inicio[self.dados.horas_invertido[b]]
+						except:
+							del self.inicio[hora2]
+							break
+						comecou += 50
+				
+					
+			else:
+				del self.inicio[hora2]
+		if len(self.inicio) == 0:
+			self.inicio['Não há mais horários'] = 'cheio'
+		
+				
+		return self.inicio
+		
+	
 
 	
