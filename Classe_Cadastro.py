@@ -5,6 +5,7 @@ class Cadastro:
 			
 			self.pagina_nova= Tk()								#Abre uma nova janela
 			self.pagina_nova.title("Cadastro - FabLab Insper")
+			self.pagina_nova.wm_iconbitmap("icon_bitmap.ico")
 
 			titulo_cadastro = Label(self.pagina_nova, text="Ficha de cadastro", height=1 ,font=("Helvetica", 25, 'bold'))			#Título da página
 			titulo_cadastro.grid(row=0, columnspan=2)
