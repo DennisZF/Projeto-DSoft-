@@ -61,10 +61,10 @@ class Minha_conta:
 			
 
 		
-		self.altera = Button(self.frame, height = 2,width= 20, text = 'Alterar senha', font = ('Helvetica',12), bg = 'tomato', command= self.alterar, cursor = 'hand2')
+		self.altera = Button(self.frame, height = 2,width= 20, text = 'Alterar senha', font = ('Helvetica',12, 'bold'), bg = 'tomato', command= self.alterar, cursor = 'hand2')
 		self.altera.grid( row = 5, column = 4, padx = 15)
 		
-		self.editar = Button(self.frame, height= 2 , width = 20, text = 'Editar', font = ('Helvetica', 12), bg='tomato', command = self.edit,cursor="hand2")
+		self.editar = Button(self.frame, height= 2 , width = 20, text = 'Editar', font = ('Helvetica', 12,'bold'), bg='tomato', command = self.edit,cursor="hand2")
 		self.editar.grid(row=9, column = 4, padx = 20)
 	def salvar(self):
 		tudo = self.preenchido()
@@ -74,7 +74,7 @@ class Minha_conta:
 			for x in [self.usuario, self.senha, self.nome,self.curso, self.semestre, self.matricula, self.email, self.curso]:
 				x.configure(state = 'disabled')
 			self.salva.destroy()
-			self.editar = Button(self.frame, height= 2 , width = 15, text = 'Editar', font = ('Helvetica', 12), bg='tomato', command = self.edit,cursor="hand2")
+			self.editar = Button(self.frame, height= 2 , width = 15, text = 'Editar', font = ('Helvetica', 12,'bold'), bg='tomato', command = self.edit,cursor="hand2")
 			self.editar.grid(row=9, column = 4, padx = 20)
 		else:
 			for info in tudo:
@@ -96,7 +96,7 @@ class Minha_conta:
 		for x in [self.usuario, self.nome,self.curso, self.semestre, self.matricula, self.email, self.curso]:
 			x.configure(state = 'normal')
 		self.editar.destroy()
-		self.salva = Button(self.frame, height = 2, width = 25, text='Salvar alterações',font = ('Helvetica', 12), bg='tomato', command = self.salvar,cursor="hand2")
+		self.salva = Button(self.frame, height = 2, width = 25, text='Salvar alterações',font = ('Helvetica', 12,'bold'), bg='tomato', command = self.salvar,cursor="hand2")
 		self.salva.grid(row= 9, column = 4, padx = 20)
 		
 	def alterar(self):
@@ -108,7 +108,7 @@ class Minha_conta:
 		self.senha = Entry(self.popup, font = ('Helvetica', 13), show = '*')
 		self.senha.grid(row = 0, column = 1, pady = 20, padx = 10)
 		
-		self.confirma = Button(self.popup, text = 'Enviar', height = 1, width = 15, font = ('Helvetica', 15), fg= 'white', bg = 'Red4', command = self.confirmacao)
+		self.confirma = Button(self.popup, text = 'Enviar', height = 1, width = 15, font = ('Helvetica', 15, 'bold'), fg= 'white', bg = 'Red4', command = self.confirmacao)
 		self.confirma.grid(row = 2 ,column = 0, columnspan = 2 , padx = 10, pady = 10)
 		
 	def confirmacao(self):

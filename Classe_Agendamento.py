@@ -61,7 +61,7 @@ class Agendamento:
 		
 		self.frame = frame
 		
-		self.enviar = Button(self.frame, height= 2 , width = 15, text = 'Enviar', font = ('Helvetica', 12), bg='tomato', command = self.envia,cursor="hand2")
+		self.enviar = Button(self.frame, height= 2 , width = 15, text = 'Enviar', font = ('Helvetica', 12, 'bold'), bg='tomato', command = self.envia,cursor="hand2")
 		self.enviar.grid(row=9, column = 2)
 	
 		
