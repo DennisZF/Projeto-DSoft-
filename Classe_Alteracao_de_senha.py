@@ -2,10 +2,11 @@ from tkinter import *
 from tkinter import messagebox
 
 class Alteracao_de_senha:
-	def __init__(self, frame, dados, usuario):
+	def __init__(self,janela, frame, dados, usuario):
 		self.frame = frame
 		self.dados = dados
 		self.usuario = usuario
+		self.janela = janela
 		
 		self.alteracao = Label(self.frame, text = 'Alteração de senha', font=('Helvetica', 30,'bold'))
 		self.alteracao.grid(row =0, columnspan = 2, pady = 30)
@@ -29,14 +30,12 @@ class Alteracao_de_senha:
 		tudo = self.preenchido()
 		if tudo == True:
 			if self.nova_senha.get() == self.repete_nova_senha.get():
-				self.dados.dados[self.usuario][0] = self.nova_senha.get()
-				del self.dados.usuarios[self.usuario]
-				self.dados.usuarios[self.usuario] = self.nova_senha.get()
+				self.dados.muda_senha(self.usuario,self.nova_senha.get())
 				notificacao = messagebox.showinfo("Salvo", "Sua senha foi redefinida")
 				for child in self.frame.winfo_children():
 					child.destroy()
 				from Classe_Minha_conta import Minha_conta
-				M= Minha_conta(self.frame, self.dados, self.usuario)
+				M= Minha_conta(self.janela,self.frame, self.dados, self.usuario)
 			else:
 				if hasattr(self, 'notifica'):
 					self.notifica.destroy()
