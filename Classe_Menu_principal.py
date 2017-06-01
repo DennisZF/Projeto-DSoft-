@@ -33,8 +33,8 @@ class Menu_principal:
 		
 		#----------------- Imagem ------------
 		
-		foto2 = PhotoImage(file="Dsoft_Menu.PNG")
-		corpo = Label(self.janela, image=foto2, width = 1400, height=650)
+		foto2 = PhotoImage(file="Imagem_Menu.PNG")
+		corpo = Label(self.janela, image=foto2, width = 1366, height=600)
 		corpo.image=foto2
 		corpo.pack(side = TOP)
 		
