@@ -34,9 +34,9 @@ class Menu_principal:
 		#----------------- Imagem ------------
 		
 		foto2 = PhotoImage(file="Imagem_Menu.PNG")
-		corpo = Label(self.janela, image=foto2, width = 1366, height=600)
-		corpo.image=foto2
-		corpo.pack(side = TOP)
+		self.menu = Label(self.janela, image=foto2, width = 1366, height=600)
+		self.menu.image=foto2
+		self.menu.pack(side = TOP)
 		
 	#------- Funções ---------	
 	
