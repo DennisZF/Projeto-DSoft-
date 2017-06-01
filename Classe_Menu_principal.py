@@ -30,6 +30,14 @@ class Menu_principal:
 		self.minha_conta =Button(canto, text="Minha Conta",height = 1,width = 25,bg= 'Tomato', fg='Black',font =("Helvetica", 10, 'bold'), command= self.conta).pack(side=LEFT)
 		self.sair = Button(canto, text="Sair", height =1, width =15,bg= 'black',fg= 'White',command= self.sai,font =("Helvetica", 10, 'bold')).pack(side=LEFT)
 		
+		
+		#----------------- Imagem ------------
+		
+		foto2 = PhotoImage(file="Dsoft_Menu.PNG")
+		corpo = Label(self.janela, image=foto2, width = 1400, height=650)
+		corpo.image=foto2
+		corpo.pack(side = TOP)
+		
 	#------- Funções ---------	
 	
 	#Botão sair:
