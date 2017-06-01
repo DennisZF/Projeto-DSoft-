@@ -70,9 +70,17 @@ class Cadastro:
 			tudo = self.preenchido()
 			if tudo == True:
 				if self.senha.get() == self.repete.get():
-					self.dados.addusuario(self.usuario.get(), self.senha.get(),self.nome.get(),self.curso.get(), self.semestre.get(), self.matricula.get(), self.email.get())
-					self.pagina_nova.destroy()
+					add = self.dados.usuarioexistente(self.usuario.get(), self.senha.get(),self.nome.get(),self.curso.get(), self.semestre.get(), self.matricula.get(), self.email.get())
+					if add == True:
+						self.pagina_nova.destroy()
+					else:
+						if hasattr(self,'notifica'):
+							self.notifica.destroy()
+						self.notifica= Label(self.pagina_nova, text="Usuário já existente",fg= 'red', justify=CENTER,font=("Helvetica", 10, 'bold'))					#"Texto que se refere ao link
+						self.notifica.grid(row = 2, columnspan = 2)
 				else:
+					if hasattr(self,'notifica'):
+							self.notifica.destroy()
 					self.notifica= Label(self.pagina_nova, text="Senhas não compatíveis",fg= 'red', justify=CENTER,font=("Helvetica", 10, 'bold'))					#"Texto que se refere ao link
 					self.notifica.grid(row = 2, columnspan = 2)
 			else:
