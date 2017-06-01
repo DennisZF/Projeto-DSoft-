@@ -69,8 +69,12 @@ class Cadastro:
 		def envia(self):
 			tudo = self.preenchido()
 			if tudo == True:
-				self.dados.addusuario(self.usuario.get(), self.senha.get(),self.nome.get(),self.curso.get(), self.semestre.get(), self.matricula.get(), self.email.get())
-				self.pagina_nova.destroy()
+				if self.senha.get() == self.repete.get():
+					self.dados.addusuario(self.usuario.get(), self.senha.get(),self.nome.get(),self.curso.get(), self.semestre.get(), self.matricula.get(), self.email.get())
+					self.pagina_nova.destroy()
+				else:
+					self.notifica= Label(self.pagina_nova, text="Senhas não compatíveis",fg= 'red', justify=CENTER,font=("Helvetica", 10, 'bold'))					#"Texto que se refere ao link
+					self.notifica.grid(row = 2, columnspan = 2)
 			else:
 				for info in tudo:
 					info.configure(bg = 'Khaki1')
