@@ -179,7 +179,6 @@ class Agendamento:
 							
 							if setor in setordb:
 								tempodb = self.dados.tempo(self.data,hora,setor)
-								print(tempodb)
 								tempo = self.intervalo[tempodb]
 								inicio = self.horas[hora]
 								horarios = inicio + tempo
