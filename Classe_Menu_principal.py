@@ -85,7 +85,7 @@ class Menu_principal:
 		self.menu.pack(side=LEFT)
 		self.frame=Frame(self.janela)
 		self.frame.pack(padx=0, pady=15)
-		I=Instrucoes(self.frame, self.dados, self.menu)
+		I=Instrucoes(self.frame, self.menu)
 	
 	def conta(self):
 		from Classe_Minha_conta import Minha_conta
@@ -95,7 +95,7 @@ class Menu_principal:
 			self.frame.destroy()
 		self.frame=Frame(self.janela)
 		self.frame.pack(padx=0, pady=15)
-		M= Minha_conta(self.frame, self.dados, self.usuario)
+		M= Minha_conta(self.janela,self.frame, self.dados, self.usuario)
 
 	def cancela(self):
 		from Classe_Cancelamento import Cancelamento
