@@ -1,9 +1,10 @@
 from tkinter import *
 class Sair:
-	def __init__(self, janela, frame, dados):
+	def __init__(self, janela, frame, dados,menu):
 		self.dados = dados
 		self.janela = janela
 		self.frame=frame
+		self.menu = menu
 		
 		certeza= Label(self.frame, text="Tem certeza que deseja sair?", height=1 ,font=("Helvetica", 16))
 		certeza.pack(side= TOP,padx=0, pady = 25)
@@ -18,4 +19,8 @@ class Sair:
 		volta = Login(self.dados)
 	def nao(self):
 		self.frame.destroy()
-		#o ideal seria colocar alguma pag de entrada para que agora apareca
+		foto2 = PhotoImage(file="Imagem_Menu.PNG")
+		self.menu.pack(side = TOP)
+		self.menu2 = Label(self.menu, image=foto2, width = 1366, height=600)
+		self.menu2.image=foto2
+		self.menu2.pack(side = TOP)

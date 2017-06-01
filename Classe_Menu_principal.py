@@ -50,7 +50,8 @@ class Menu_principal:
 			self.frame.destroy()
 		self.frame =Frame(self.janela)
 		self.frame.pack(padx=0, pady = 15)
-		s = Sair(self.janela,self.frame, self.dados) 
+		self.menu=Frame(self.janela,width = 1366, height=600)
+		s = Sair(self.janela,self.frame, self.dados, self.menu) 
 	
 	def calendar(self):
 		from Classe_Calendario import Calendario
@@ -78,7 +79,7 @@ class Menu_principal:
 		from Classe_Instruções import Instrucoes
 		if hasattr(self, 'menu'):
 			self.menu.destroy()
-		if hasattr(self,"frame"):
+		if hasattr(self,'frame'):
 			self.frame.destroy()
 		self.menu=Frame (cursor="hand2")
 		self.menu.pack(side=LEFT)
