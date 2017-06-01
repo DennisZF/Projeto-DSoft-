@@ -69,11 +69,21 @@ class Fire:
 												"nome":nome,
 												"numero de pessoas":pessoas,
 												"tempo":tempo,
-												"status":"Agendado"
 											}
 									}
 				}
 		self.db.child("horarios").update(agenda)
+		agenda2 = {
+					"{}/".format(data)+hora:{
+										setor:{
+												"nome":nome,
+												"numero de pessoas":pessoas,
+												"tempo":tempo,
+												"status":"Agendado"
+											}
+									}
+				}
+		self.db.child("historia").update(agenda2)
 		
 	def horas(self,data):
 		existentes = self.db.child("horarios").child(data).get()
@@ -106,7 +116,7 @@ class Fire:
 		existentes = self.db.child("horarios").child(data).child(hora).get()
 		ja= existentes.val()
 		D = []
-		for x in ["nome","numero de pessoas","tempo","status"]:
+		for x in ["nome","numero de pessoas","tempo"]:
 			D.append(ja[setor][x])
 		return D
 		
@@ -119,7 +129,41 @@ class Fire:
 			return False
 		
 	def cancelahorario(self,data,hora,setor):
+		c=self.valores2(data,hora,setor)
 		self.db.child("horarios").child(data).child(hora).child(setor).remove()
+		mudanca = {
+					"numero de pessoas": c[0],
+					"tempo": c[0],
+					"status":"Cancelado"
+				}
+		self.db.child("historia").child(data).child(hora).child(setor).update(mudanca)
 		
-										
+	def horas2(self,data):
+		existentes = self.db.child("historia").child(data).get()
+		ja= existentes.val()
+		return ja
+		
+	def setor2(self,data, hora):
+		existentes = self.db.child("historia").child(data).child(hora).get()
+		ja= existentes.val()
+		return ja
+	def valores2(self,data,hora,setor):
+		existentes = self.db.child("historia").child(data).child(hora).get()
+		ja= existentes.val()
+		D = []
+		for x in ["numero de pessoas","tempo","status"]:
+			D.append(ja[setor][x])
+		return D	
+	def dias2(self):
+		existentes = self.db.child("historia").get()
+		ja= existentes.val()
+		return ja
+	def meses2(self,dia):
+		existentes = self.db.child("historia").child(dia).get()
+		ja= existentes.val()
+		return ja
+	def anos2(self,dia,mes):
+		existentes = self.db.child("historia").child(dia).child(mes).get()
+		ja= existentes.val()
+		return ja		
 		
