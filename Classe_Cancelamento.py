@@ -47,7 +47,8 @@ class Cancelamento:
 		confirma = messagebox.askquestion("Confirmação de envio", "Tem certeza que deseja cancelar a reserva do dia {} às {} no(a) {}?".format(self.data, self.combo4.get(), self.combo.get()))
 		if confirma == 'yes':
 			try:
-				if self.dados.dados[self.usuario][1]==self.dados.horarios[self.data][self.combo4.get()][self.combo.get()]["nome"]:
+				v = self.dados.verificanome(self.usuario,self.data,self.combo4.get(),self.combo.get())
+				if v == True:
 					self.dados.cancelahorario(self.data, self.combo4.get(), self.combo.get())
 					for child in self.frame.winfo_children():
 								child.destroy()
