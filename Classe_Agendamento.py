@@ -41,7 +41,7 @@ class Agendamento:
 		self.escolha4.grid(row=6, column=2, padx= 10)
 		self.combo3=ttk.Combobox(frame)       #combobox de seleção
 		self.combo3.grid(row=7, column=2, padx= 10)
-		self.combo3['values']=('1','2','3','4','5','6')
+		self.combo3['values']=(1,2,3,4,5,6)
 		self.combo3.current(0) #default é o primeiro termo
 		
 		self.escolha6= Label(frame, text="3.  Selecione o tempo necessaário: ", font=("Helvetica",8, 'bold'))     #instrução
@@ -94,7 +94,8 @@ class Agendamento:
 							setor=self.combo.get()
 							hora= self.combo4.get()
 							tempo=self.combo5.get()
-							self.dados.addhorario(self.data, self.combo4.get(), self.dados.dados[self.usuario][1],self.combo.get(), self.combo3.get(), self.combo5.get())
+							nome = self.dados.coletadados(self.usuario)[1]
+							self.dados.addhorario(self.data, self.combo4.get(), nome,self.combo.get(), self.combo3.get(), self.combo5.get())
 							for child in self.frame.winfo_children():
 								child.destroy()
 							self.sucesso = Label(self.frame, text = "Seu agendamento foi realizado com sucesso!", font = ("Helvetica", 15, 'bold'))
@@ -150,38 +151,64 @@ class Agendamento:
 		self.combo4.current(0)
 	
 	def horario_de_inicio(self):
-		self.inicio = dict(self.dados.horas)
+		
+		self.horas = {'8:00': 800,'8:30': 850,'9:00':900,'9:30':950,'10:00':1000,'10:30':1050,'11:00':1100,'11:30':1150,'12:00':1200,'12:30':1250,'13:00':1300,'13:30':1350,'14:00':1400,'14:30':1450,'15:00':1500,'15:30':1550,'16:00':1600,'16:30':1650,'17:00': 1700,'17:30': 1750,'18:00':1800,'18:30':1850}
+		self.horas_invertido = {'800':'8:00','850':'8:30','900':'9:00','950':'9:30','1000':'10:00','1050':'10:30','1100':'11:00','1150':'11:30','1200':'12:00','1250':'12:30','1300':'13:00','1350':'13:30','1400':'14:00','1450':'14:30','1500':'15:00','1550':'15:30','1600':'16:00','1650':'16:30','1700':'17:00','1750':'17:30','1800':'18:00','1850':'18:30'}
+		self.intervalo = {'30 min':50,'1h':100,'1h30min':150,'2h':200,'2h30min':250, '3h':300}
+		
+		self.inicio = dict(self.horas)
 		setor = self.combo.get()
-		intervalo = {'30 min':50,'1h':100,'1h30min':150,'2h':200,'2h30min':250, '3h':300}
-		if self.data in self.dados.horarios.keys():
-			for hora in self.dados.horas.keys():
-				if hora in self.dados.horarios[self.data].keys():
-					if setor in self.dados.horarios[self.data][hora]:
-						tempo = intervalo[self.dados.horarios[self.data][hora][setor]["tempo"]]
-						inicio = self.dados.horas[hora]
-						horarios = inicio + tempo
-						while inicio < horarios:
-							a = str(inicio)
-							del self.inicio[self.dados.horas_invertido[a]]
-							inicio += 50
-					else:
-						continue
-				else:
-					continue
+		
+		dia = self.data[0:2]
+		mes = self.data[3:5]
+		ano = self.data[6:]
+		
+		diadb = self.dados.dias()
+		mesdb = self.dados.meses(dia)
+		anodb = self.dados.anos(dia,mes)
+		if dia in diadb:
+			if mes in mesdb:
+				if ano in anodb:
+					horasdb = self.dados.horas(self.data)
+					
+					
+					for hora in self.horas.keys():
+						
+						if hora in horasdb:
+							setordb = self.dados.setor(self.data,hora)
+							
+							if setor in setordb:
+								tempodb = self.dados.tempo(self.data,hora,setor)
+								print(tempodb)
+								tempo = self.intervalo[tempodb]
+								inicio = self.horas[hora]
+								horarios = inicio + tempo
+								while inicio < horarios:
+									a = str(inicio)
+									del self.inicio[self.horas_invertido[a]]
+									inicio += 50
+							
+							else:
+								continue
+						
+						else:
+							continue
+		
+		
 		self.fim = dict(self.inicio)
 		for hora2 in self.fim.keys():
-			tempo = intervalo[self.combo5.get()]
-			comecou = self.dados.horas[hora2]
+			tempo = self.intervalo[self.combo5.get()]
+			comecou = self.horas[hora2]
 			fim = comecou + tempo
 			if fim <= 1900:
-					while comecou < fim and len(self.inicio)>0:
-						b=str(comecou)
-						try:
-							tem = self.inicio[self.dados.horas_invertido[b]]
-						except:
-							del self.inicio[hora2]
-							break
-						comecou += 50
+				while comecou < fim and len(self.inicio)>0:
+					b=str(comecou)
+					try:
+						tem = self.inicio[self.horas_invertido[b]]
+					except:
+						del self.inicio[hora2]
+						break
+					comecou += 50
 				
 					
 			else:
@@ -193,5 +220,8 @@ class Agendamento:
 		return self.inicio
 		
 	
-
+	#def pessoas(self):
+		
+							
+		
 	
