@@ -9,8 +9,8 @@ class Sair:
 		certeza= Label(self.frame, text="Tem certeza que deseja sair?", height=1 ,font=("Helvetica", 16))
 		certeza.pack(side= TOP,padx=0, pady = 25)
 		
-		sim = Button(self.frame,text="Sim",height = 2,width = 9,bg= 'Seashell4',fg= 'Black',command=self.sim,font= ("Helvetica", 16, 'bold')).pack(side=LEFT)
-		nao = Button(self.frame,text="Não",height = 2,width = 9,bg= 'Seashell4',fg= 'Black', command=self.nao, font=("Helvetica", 16, 'bold')).pack(side=RIGHT)
+		sim = Button(self.frame,text="Sim",height = 2,width = 9,bg= 'Seashell4',fg= 'Black',command=self.sim,font= ("Helvetica", 16, 'bold'),  cursor = 'hand2').pack(side=LEFT)
+		nao = Button(self.frame,text="Não",height = 2,width = 9,bg= 'Seashell4',fg= 'Black', command=self.nao, font=("Helvetica", 16, 'bold'),  cursor = 'hand2').pack(side=RIGHT)
 	def sim(self):
 		self.janela.destroy()
 		
