@@ -23,7 +23,7 @@ class Alteracao_de_senha:
 		self.repete_nova_senha = Entry(self.frame, width= 25, font=('Helvetica',14), show = "*")
 		self.repete_nova_senha.grid(row=4, column = 1,pady = 10, padx=10) 
 		
-		self.altera = Button(self.frame, text = "Salvar nova senha", height = 2, bg = 'Red4', command = self.muda)
+		self.altera = Button(self.frame, text = "Salvar nova senha", font=('Helvetica', 15, 'bold'), height = 2, bg = 'Red4', cursor = 'hand2', command = self.muda)
 		self.altera.grid(row = 6, column = 0, columnspan = 1, padx= 10, pady=10)
 		
 	def muda(self):
