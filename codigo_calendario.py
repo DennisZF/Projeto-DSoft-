@@ -5,10 +5,10 @@ import tkinter.font as tkFont
 
 import tkinter.ttk as ttk
 
-#código do calendário
+#----------código do calendário
 
 class Calendar(ttk.Frame):
-    # XXX ToDo: cget and configure
+    #------obtenção e configuração
     datetime = calendar.datetime.datetime
     timedelta = calendar.datetime.timedelta
 
@@ -19,7 +19,7 @@ class Calendar(ttk.Frame):
             locale, firstweekday, year, month, selectbackground,
             selectforeground
         """
-        # remove custom options from kw before initializating ttk.Frame
+        #------removendo opções customizadas do kw antes de inciar o ttk.Frame
         fwday = kw.pop('firstweekday', calendar.SUNDAY)
         year = kw.pop('year', self.datetime.now().year)
         month = kw.pop('month', self.datetime.now().month)
@@ -28,25 +28,29 @@ class Calendar(ttk.Frame):
         sel_fg = kw.pop('selectforeground', '#05640e')
 
         self._date = self.datetime(year, month, 1)
-        self._selection = None # no date selected
+		#------não ha data inicial
+        self._selection = None
 
         ttk.Frame.__init__(self, master, **kw)
 
         self._cal = self.get_calendar(locale, fwday)
-
-        self.__setup_styles()       # creates custom styles
-        self.__place_widgets()      # pack/grid used widgets
-        self.__config_calendar()    # adjust calendar columns and setup tags
-        # configure a canvas, and proper bindings, for selecting dates
+		
+		#-----criação de estilos e geometrização
+        self.__setup_styles()
+        self.__place_widgets() 
+        self.__config_calendar()
+		
+        #------configuração de tela e dos cliques
         self.__setup_selection(sel_bg, sel_fg)
 
-        # store items ids, used for insertion later
+        #----- armazenamento dos itens selecionados para posterior uso
         self._items = [self._calendar.insert('', 'end', values='')
                             for _ in range(6)]
-        # insert dates in the currently empty calendar
+							
+        #------ insere as datas no calendário vazio
         self._build_calendar()
 
-        # set the minimal size for the widget
+        #-------- define o tamanho mínimo do widget
         self._calendar.bind('<Map>', self.__minsize)
 
     def __setitem__(self, item, value):
@@ -71,7 +75,7 @@ class Calendar(ttk.Frame):
             return r[item]
 
     def __setup_styles(self):
-        # custom ttk styles
+        #----- estilos customizados do ttk
         style = ttk.Style(self.master)
         arrow_layout = lambda dir: (
             [('Button.focus', {'children': [('Button.%sarrow' % dir, None)]})]
@@ -80,15 +84,16 @@ class Calendar(ttk.Frame):
         style.layout('R.TButton', arrow_layout('right'))
 
     def __place_widgets(self):
-        # header frame and its widgets
+        #------ cabeçalho do frame e dos widgets
         hframe = ttk.Frame(self)
         lbtn = ttk.Button(hframe, style='L.TButton', command=self._prev_month)
         rbtn = ttk.Button(hframe, style='R.TButton', command=self._next_month)
         self._header = ttk.Label(hframe, width=15, anchor='center')
-        # the calendar
+        
+		#----- o clanedário em si
         self._calendar = ttk.Treeview(show='', selectmode='none', height=7)
 
-        # pack the widgets
+        #-----------geometrização dos widgets
         hframe.pack(in_=self, side='top', pady=4, anchor='center')
         lbtn.grid(in_=hframe)
         self._header.grid(in_=hframe, column=1, row=0, padx=12)
@@ -100,7 +105,8 @@ class Calendar(ttk.Frame):
         self._calendar['columns'] = cols
         self._calendar.tag_configure('header', background='grey90')
         self._calendar.insert('', 'end', values=cols, tag='header')
-        # adjust its columns width
+        
+		#------ ajuste do tamanho das colunas
         font = tkFont.Font()
         maxwidth = max(font.measure(col) for col in cols)
         for col in cols:
@@ -125,11 +131,11 @@ class Calendar(ttk.Frame):
     def _build_calendar(self):
         year, month = self._date.year, self._date.month
 
-        # update header text (Month, YEAR)
+        #------atualiza o texto do cabeçalho - mês e ano
         header = self._cal.formatmonthname(year, month, 0)
         self._header['text'] = header.title()
 
-        # update calendar shown dates
+        #------ atualiza as datas mostradas
         cal = self._cal.monthdayscalendar(year, month)
         for indx, item in enumerate(self._items):
             week = cal[indx] if indx < len(cal) else []
@@ -148,7 +154,7 @@ class Calendar(ttk.Frame):
         canvas.itemconfigure(canvas.text, text=text)
         canvas.place(in_=self._calendar, x=x, y=y)
 
-    # Callbacks
+    #-------- funções (Callbacks)
 
     def _pressed(self, evt):
         """Clicked somewhere in the calendar."""
@@ -157,22 +163,25 @@ class Calendar(ttk.Frame):
         column = widget.identify_column(x)
 
         if not column or not item in self._items:
-            # clicked in the weekdays row or just outside the columns
+            #----- caso clicado nos dias da semana ou fora das colunas
             return
 
         item_values = widget.item(item)['values']
-        if not len(item_values): # row is empty for this month
+		#---------- linha vazia neste mês
+        if not len(item_values):
             return
 
         text = item_values[int(column[1]) - 1]
-        if not text: # date is empty
+		#--------- data vazia
+        if not text: 
             return
 
         bbox = widget.bbox(item, column)
-        if not bbox: # calendar not visible yet
+		#------------o calendário ainda não está visível
+        if not bbox:
             return
 
-        # update and then show selection
+        #------atualização e mostragem do selecionado
         text = '%02d' % text
         self._selection = (text, item, column)
         self._show_selection(text, bbox)
@@ -183,7 +192,8 @@ class Calendar(ttk.Frame):
 
         self._date = self._date - self.timedelta(days=1)
         self._date = self.datetime(self._date.year, self._date.month, 1)
-        self._build_calendar() # reconstuct calendar
+		#-----reconstrução do calendário
+        self._build_calendar()
 
     def _next_month(self):
         """Update calendar to show the next month."""
@@ -193,9 +203,10 @@ class Calendar(ttk.Frame):
         self._date = self._date + self.timedelta(
             days=calendar.monthrange(year, month)[1] + 1)
         self._date = self.datetime(self._date.year, self._date.month, 1)
-        self._build_calendar() # reconstruct calendar
+		#----------reconstrução do calendário
+        self._build_calendar()
 
-    # Properties
+    #------- Propriedades
 
     @property
     def selection(self):
@@ -208,7 +219,7 @@ class Calendar(ttk.Frame):
         return a.strftime('%d/%m/%Y')
 	
     def get_calendar(self,locale, fwday):
-		# instantiate proper calendar class
+		#---------- instanciamento correto da classe calendário 
 	    if locale is None:
 		    return calendar.TextCalendar(fwday)
 	    else:
