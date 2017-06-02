@@ -4,9 +4,8 @@ import tkinter as ttk
 from PIL import ImageTk, Image
 
 class Instrucoes:
-	def __init__(self, frame, dados, menu):
+	def __init__(self, frame, menu):
 		self.frame=frame
-		self.dados=dados
 
 		titulo=Label(frame, text="Instruções", height=1, font=("Helvetica", 25, "bold"))
 		titulo.pack(side=TOP)
