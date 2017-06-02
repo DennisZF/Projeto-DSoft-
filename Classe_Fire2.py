@@ -2,20 +2,22 @@ import pyrebase
 
 class Fire:
 	def __init__(self):
-
+		#-----configuração de conexão entre servidor e programa
 		config = {
 					"apiKey": "apiKey",
 					"authDomain": "projeto-dsoft-final.firebaseapp.com",
 					"databaseURL": "https://projeto-dsoft-final.firebaseio.com",
 					"storageBucket": "projeto-dsoft-final.appspot.com"
 				}
-
+		
+		
+		#-----inicialização do servidor
 		self.firebase = pyrebase.initialize_app(config)
 
 		self.db = self.firebase.database()
 		
 		
-		
+	#------- setor de usuários	
 	def usuarioexistente(self,usuario, senha,nome,curso, semestre, matricula, email):
 		existentes = self.db.child("usuarios").get()
 		ja= existentes.val()
@@ -24,6 +26,7 @@ class Fire:
 			return True
 		else:
 			return False
+			
 	def addusuario(self,usuario, senha,nome,curso, semestre, matricula, email):
 		dados = {	
 					"/usuarios/"+usuario: {
@@ -36,13 +39,16 @@ class Fire:
 					}
 				}
 		self.db.update(dados)
+		
+	#-------verificação de senha
 	def verificacao(self,usuario,senha):
 		existentes = self.db.child("usuarios").get()
 		ja= existentes.val()
 		if usuario in ja:
 			if ja[usuario]["senha"]==senha:
 				return True
-				
+	
+		#-----remoção de conta
 	def deletaconta(self,usuario):
 		self.db.child("usuarios").child(usuario).remove()
 		try:
@@ -56,6 +62,8 @@ class Fire:
 								self.db.child("historia").child(usuario).remove()
 		except:
 			pass
+			
+	#-------armazenamento		
 	def coletadados(self,usuario):
 		existentes = self.db.child("usuarios").get()
 		ja= existentes.val()
@@ -63,16 +71,20 @@ class Fire:
 		for x in ["senha","nome","curso","semestre","matricula","email"]:
 			D.append(ja[usuario][x])
 		return D
+		
+	#-------atualização de informações
 	def attusuario(self,usuario,nome,curso, semestre, matricula, email):
 		self.db.child("usuarios").child(usuario).update({'curso':curso})
 		self.db.child("usuarios").child(usuario).update({'nome':nome})
 		self.db.child("usuarios").child(usuario).update({'semestre':semestre})
 		self.db.child("usuarios").child(usuario).update({'matricula':matricula})
 		self.db.child("usuarios").child(usuario).update({'email':email})
-		
+	
+	#------mudança de senha	
 	def muda_senha(self,usuario,senha):
 		self.db.child("usuarios").child(usuario).update({'senha':senha})
-		
+	
+	#-------adição de reservas
 	def addhorario(self,usuario,data,hora, nome, setor, pessoas, tempo):
 		agenda = {
 					"{}/".format(data)+hora:{

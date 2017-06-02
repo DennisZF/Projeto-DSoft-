@@ -77,8 +77,9 @@ class Minha_conta:
 			self.dados.attusuario(self.usuario1.get(),self.nome.get(),self.curso.get(), self.semestre.get(), self.matricula.get(), self.email.get())
 			for x in [self.usuario1, self.nome, self.semestre, self.matricula, self.email, self.curso]:
 				x.configure(state = 'disabled')
+			curso = self.curso.get()
 			self.curso = Entry(self.frame, width= 25,font=('Helvetica',14))
-			self.curso.insert(END, self.userdados[2])
+			self.curso.insert(END, curso)
 			self.curso.configure(state = 'disabled',disabledbackground= "NavajoWhite", disabledforeground= 'Peru')
 			self.curso.grid(row=7, column = 1,pady = 10, padx=10) 
 			self.salva.destroy()
@@ -111,7 +112,7 @@ class Minha_conta:
 		self.curso.destroy()
 		self.curso=ttk.Combobox(self.frame,width= 23,font=('Helvetica',14))
 		self.curso.grid(row=7, column=1,pady = 10, padx=10)  #combobox de seleção
-		self.curso['values']=('Administração','Economia','Engenharia de Computação','Engenharia Meacânica','Engenharia Mecatrônica', 'Outro')
+		self.curso['values']=('Administração','Economia','Engenharia de Computação','Engenharia Mecânica','Engenharia Mecatrônica', 'Outro')
 		i=self.curso['values'].index(self.userdados[2])
 		self.curso.current(i)
 		self.editar.destroy()
