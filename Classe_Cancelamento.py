@@ -49,7 +49,7 @@ class Cancelamento:
 			try:
 				v = self.dados.verificanome(self.usuario,self.data,self.combo4.get(),self.combo.get())
 				if v == True:
-					self.dados.cancelahorario(self.data, self.combo4.get(), self.combo.get())
+					self.dados.cancelahorario(self.usuario,self.data, self.combo4.get(), self.combo.get())
 					for child in self.frame.winfo_children():
 								child.destroy()
 					self.sucesso = Label(self.frame, text = "Seu cancelamento foi realizado com sucesso!", font = ("Helvetica", 15, 'bold'))
