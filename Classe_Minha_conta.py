@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter import messagebox
+import tkinter.ttk as ttk
 
 class Minha_conta:
 	def __init__(self,janela, frame,dados, usuario):
@@ -27,7 +28,7 @@ class Minha_conta:
 		self.curso.insert(END, self.userdados[2])
 		self.curso.configure(state = 'disabled',disabledbackground= "NavajoWhite", disabledforeground= 'Peru')
 		self.curso.grid(row=7, column = 1,pady = 10, padx=10) 
-			
+		
 			
 		#Semestre
 		pede_semestre = Label(self.frame, text="Semestre:", height=1 ,font=("Helvetica", 14))
@@ -74,12 +75,19 @@ class Minha_conta:
 		tudo = self.preenchido()
 		if tudo == True:
 			self.dados.attusuario(self.usuario1.get(),self.nome.get(),self.curso.get(), self.semestre.get(), self.matricula.get(), self.email.get())
-			for x in [self.usuario1, self.nome,self.curso, self.semestre, self.matricula, self.email, self.curso]:
+			for x in [self.usuario1, self.nome, self.semestre, self.matricula, self.email, self.curso]:
 				x.configure(state = 'disabled')
+			self.curso = Entry(self.frame, width= 25,font=('Helvetica',14))
+			self.curso.insert(END, self.userdados[2])
+			self.curso.configure(state = 'disabled',disabledbackground= "NavajoWhite", disabledforeground= 'Peru')
+			self.curso.grid(row=7, column = 1,pady = 10, padx=10) 
 			self.salva.destroy()
 			self.editar = Button(self.frame, height= 2 , width = 15, text = 'Editar', font = ('Helvetica', 12,'bold'), bg='tomato', command = self.edit,cursor="hand2")
 			self.editar.grid(row=9, column = 4, padx = 20)
 		else:
+			if self.curso in tudo:
+				i=tudo.index(self.curso)
+				del tudo[i]
 			for info in tudo:
 				info.configure(bg = 'Khaki1')
 				self.notifica= Label(self.frame, text="Preencha todos os campos",fg= 'red', justify=CENTER,font=("Helvetica", 10, 'bold'))					#"Texto que se refere ao link
@@ -90,14 +98,22 @@ class Minha_conta:
 			a = x.get()
 			if a == "":
 				vazios.append(x)
+		if self.curso.get() not in self.curso['values']:
+			vazios.append(self.curso)
 		if vazios == []:
 			return True
 		else:
 			return vazios
 			
 	def edit(self):
-		for x in [ self.nome,self.curso, self.semestre, self.matricula, self.email, self.curso]:
+		for x in [ self.nome, self.semestre, self.matricula, self.email, self.curso]:
 			x.configure(state = 'normal')
+		self.curso.destroy()
+		self.curso=ttk.Combobox(self.frame,width= 23,font=('Helvetica',14))
+		self.curso.grid(row=7, column=1,pady = 10, padx=10)  #combobox de seleção
+		self.curso['values']=('Administração','Economia','Engenharia de Computação','Engenharia Meacânica','Engenharia Mecatrônica', 'Outro')
+		i=self.curso['values'].index(self.userdados[2])
+		self.curso.current(i)
 		self.editar.destroy()
 		self.salva = Button(self.frame, height = 2, width = 25, text='Salvar alterações',font = ('Helvetica', 12,'bold'), bg='tomato', command = self.salvar,cursor="hand2")
 		self.salva.grid(row= 9, column = 4, padx = 20)
