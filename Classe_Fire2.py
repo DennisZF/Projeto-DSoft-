@@ -45,6 +45,17 @@ class Fire:
 				
 	def deletaconta(self,usuario):
 		self.db.child("usuarios").child(usuario).remove()
+		try:
+			for dia in self.dias2(usuario):
+				for mes in self.meses2(usuario,dia):
+					for ano in self.anos2(usuario,dia,mes):
+						data='{}/{}/{}'.format(dia,mes,ano)
+						for hora in self.horas2(usuario,data):
+							for setor in self.setor2(usuario,data,hora):
+								self.db.child("horarios").child(dia).child(mes).child(ano).child(hora).child(setor).remove()
+								self.db.child("historia").child(usuario).remove()
+		except:
+			pass
 	def coletadados(self,usuario):
 		existentes = self.db.child("usuarios").get()
 		ja= existentes.val()
