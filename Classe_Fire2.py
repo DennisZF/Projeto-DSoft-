@@ -62,7 +62,7 @@ class Fire:
 	def muda_senha(self,usuario,senha):
 		self.db.child("usuarios").child(usuario).update({'senha':senha})
 		
-	def addhorario(self,data,hora, nome, setor, pessoas, tempo):
+	def addhorario(self,usuario,data,hora, nome, setor, pessoas, tempo):
 		agenda = {
 					"{}/".format(data)+hora:{
 										setor:{
@@ -83,7 +83,7 @@ class Fire:
 											}
 									}
 				}
-		self.db.child("historia").update(agenda2)
+		self.db.child("historia").child(usuario).update(agenda2)
 		
 	def horas(self,data):
 		existentes = self.db.child("horarios").child(data).get()
@@ -128,7 +128,7 @@ class Fire:
 		else:
 			return False
 		
-	def cancelahorario(self,data,hora,setor):
+	def cancelahorario(self,usuario,data,hora,setor):
 		c=self.valores2(data,hora,setor)
 		self.db.child("horarios").child(data).child(hora).child(setor).remove()
 		mudanca = {
@@ -136,34 +136,34 @@ class Fire:
 					"tempo": c[1],
 					"status":"CANCELADO"
 				}
-		self.db.child("historia").child(data).child(hora).child(setor).update(mudanca)
+		self.db.child("historia").child(usuario).child(data).child(hora).child(setor).update(mudanca)
 		
-	def horas2(self,data):
-		existentes = self.db.child("historia").child(data).get()
+	def horas2(self,usuario,data):
+		existentes = self.db.child("historia").child(usuario).child(data).get()
 		ja= existentes.val()
 		return ja
 		
-	def setor2(self,data, hora):
-		existentes = self.db.child("historia").child(data).child(hora).get()
+	def setor2(self,usuario,data, hora):
+		existentes = self.db.child("historia").child(usuario).child(data).child(hora).get()
 		ja= existentes.val()
 		return ja
-	def valores2(self,data,hora,setor):
-		existentes = self.db.child("historia").child(data).child(hora).get()
+	def valores2(self,usuario,data,hora,setor):
+		existentes = self.db.child("historia").child(usuario).child(data).child(hora).get()
 		ja= existentes.val()
 		D = []
 		for x in ["numero de pessoas","tempo","status"]:
 			D.append(ja[setor][x])
 		return D	
-	def dias2(self):
-		existentes = self.db.child("historia").get()
+	def dias2(self,usuario):
+		existentes = self.db.child("historia").child(usuario).get()
 		ja= existentes.val()
 		return ja
-	def meses2(self,dia):
-		existentes = self.db.child("historia").child(dia).get()
+	def meses2(self,usuario,dia):
+		existentes = self.db.child("historia").child(usuario).child(dia).get()
 		ja= existentes.val()
 		return ja
-	def anos2(self,dia,mes):
-		existentes = self.db.child("historia").child(dia).child(mes).get()
+	def anos2(self,usuario,dia,mes):
+		existentes = self.db.child("historia").child(usuario).child(dia).child(mes).get()
 		ja= existentes.val()
 		return ja		
 		
