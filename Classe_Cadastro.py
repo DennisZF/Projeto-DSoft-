@@ -6,67 +6,69 @@ class Cadastro:
 		def __init__(self, dados):
 			self.dados = dados
 			
-			self.pagina_nova= Tk()								#Abre uma nova janela
+			#-----Abre a janela
+			self.pagina_nova= Tk()					
 			self.pagina_nova.title("Cadastro - FabLab Insper")
 			self.pagina_nova.wm_iconbitmap("icon_bitmap.ico")
 			self.pagina_nova.bind("<Return>", self.envia)
-
-			titulo_cadastro = Label(self.pagina_nova, text="Ficha de cadastro", height=1 ,font=("Helvetica", 25, 'bold'))			#Título da página
+			#-----título da página
+			titulo_cadastro = Label(self.pagina_nova, text="Ficha de cadastro", height=1 ,font=("Helvetica", 25, 'bold'))	
 			titulo_cadastro.grid(row=0, columnspan=2)
 
 			#-------- Formulário -------
 			
-			#Nome
+			#------ espaço Nome
 			pede_nome = Label(self.pagina_nova, text="Nome:", height=1 ,font=("Helvetica", 10))
 			pede_nome.grid(row=3, column = 0)
 			self.nome = Entry(self.pagina_nova, width= 25)
 			self.nome.grid(row=3, column = 1) 
 			
-			#Curso
+			#------ espaço Curso
 			pede_curso = Label(self.pagina_nova, text="Curso:", height=1 ,font=("Helvetica", 10))
 			pede_curso.grid(row=5, column = 0)
 			self.curso=ttk.Combobox(self.pagina_nova,width= 22)
-			self.curso.grid(row=5, column=1)  #combobox de seleção
+			#------- combobox de seleção
+			self.curso.grid(row=5, column=1) 
 			self.curso['values']=('Administração','Economia','Engenharia de Computação','Engenharia Meacânica','Engenharia Mecatrônica', 'Outro')
 			self.curso.current(0)
 			
-			#Semestre
+			#--------espaço Semestre
 			pede_semestre = Label(self.pagina_nova, text="Semestre:", height=1 ,font=("Helvetica", 10))
 			pede_semestre.grid(row=7, column = 0)
 			self.semestre = Entry(self.pagina_nova, width= 25)
 			self.semestre.grid(row=7, column = 1) 
 			
-			#Número de matrícula
+			#---------espaço Número de matrícula
 			pede_matricula = Label(self.pagina_nova, text="Número de matrícula:", height=1 ,font=("Helvetica", 10))
 			pede_matricula.grid(row=9, column = 0)
 			self.matricula = Entry(self.pagina_nova, width= 25)
 			self.matricula.grid(row=9, column = 1) 
 			
-			#Email
+			#--------espaço Email
 			pede_email = Label(self.pagina_nova, text="Email do Insper:", height=1 ,font=("Helvetica", 10))
 			pede_email.grid(row=11, column = 0)
 			self.email = Entry(self.pagina_nova, width= 25)
 			self.email.grid(row=11, column = 1) 
 			
-			#Nome de usuário
+			#---------espaço Nome de usuário
 			pede_usuario = Label(self.pagina_nova, text="Nome de usuário:", height=1 ,font=("Helvetica", 10))
 			pede_usuario.grid(row=13, column = 0)
 			self.usuario = Entry(self.pagina_nova, width= 25)
 			self.usuario.grid(row=13, column = 1) 
 			
-			#Senha
+			#--------- espaço Senha
 			pede_senha = Label(self.pagina_nova, text="Senha:", height=1 ,font=("Helvetica", 10))
 			pede_senha.grid(row=15, column = 0)
 			self.senha = Entry(self.pagina_nova, width= 25,show='*')
 			self.senha.grid(row=15, column = 1) 
 			
-			#Repetição da senha
+			#-------espaço Repetição da senha
 			pede_repete = Label(self.pagina_nova, text="Repita a senha:", height=1 ,font=("Helvetica", 10))
 			pede_repete.grid(row=17, column = 0)
 			self.repete = Entry(self.pagina_nova, width= 25,show='*')
 			self.repete.grid(row=17, column = 1) 
 			
-			#Botão enviar
+			#------- Botão de envio
 			enviar = Button( self.pagina_nova, text="Enviar",width = 9,bg= 'Red4',fg= 'white',command=self.envia, font =("Helvetica", 16, 'bold'),cursor="hand2")
 			enviar.grid(rowspan = 19, column = 1, pady=5)
 			
@@ -99,7 +101,7 @@ class Cadastro:
 				self.notifica= Label(self.pagina_nova, text="Preencha todos os campos",fg= 'red', justify=CENTER,font=("Helvetica", 10, 'bold'))					#"Texto que se refere ao link
 				self.notifica.grid(row = 2, columnspan = 2)
 				
-			
+		#-------- verificação de preenchimento	
 		def preenchido(self):
 			vazios=[]
 			for x in [self.usuario, self.senha, self.nome, self.semestre, self.matricula, self.email, self.repete, self.curso]:
