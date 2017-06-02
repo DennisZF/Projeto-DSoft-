@@ -29,7 +29,7 @@ class Cadastro:
 			self.curso=ttk.Combobox(self.pagina_nova,width= 22)
 			#------- combobox de seleção
 			self.curso.grid(row=5, column=1) 
-			self.curso['values']=('Administração','Economia','Engenharia de Computação','Engenharia Meacânica','Engenharia Mecatrônica', 'Outro')
+			self.curso['values']=('Administração','Economia','Engenharia de Computação','Engenharia Mecânica','Engenharia Mecatrônica', 'Outro')
 			self.curso.current(0)
 			
 			#--------espaço Semestre
