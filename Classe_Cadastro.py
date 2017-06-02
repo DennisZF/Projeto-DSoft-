@@ -57,13 +57,13 @@ class Cadastro:
 			#Senha
 			pede_senha = Label(self.pagina_nova, text="Senha:", height=1 ,font=("Helvetica", 10))
 			pede_senha.grid(row=15, column = 0)
-			self.senha = Entry(self.pagina_nova, width= 25)
+			self.senha = Entry(self.pagina_nova, width= 25,show='*')
 			self.senha.grid(row=15, column = 1) 
 			
 			#Repetição da senha
 			pede_repete = Label(self.pagina_nova, text="Repita a senha:", height=1 ,font=("Helvetica", 10))
 			pede_repete.grid(row=17, column = 0)
-			self.repete = Entry(self.pagina_nova, width= 25)
+			self.repete = Entry(self.pagina_nova, width= 25,show='*')
 			self.repete.grid(row=17, column = 1) 
 			
 			#Botão enviar
