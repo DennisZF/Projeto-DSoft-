@@ -140,7 +140,7 @@ class Fire:
 			return False
 		
 	def cancelahorario(self,usuario,data,hora,setor):
-		c=self.valores2(data,hora,setor)
+		c=self.valores2(usuario,data,hora,setor)
 		self.db.child("horarios").child(data).child(hora).child(setor).remove()
 		mudanca = {
 					"numero de pessoas": c[0],
