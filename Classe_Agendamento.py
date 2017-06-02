@@ -28,7 +28,7 @@ class Agendamento:
 		self.combo.grid(row=4, column=2, padx= 10)  #combobox de seleção
 		self.combo['values']=('---Selecione---','Fresadora','Impressora 3D','Costura','Marcenaria','Eletrônica')
 		self.combo.bind('<<ComboboxSelected>>', self.atualiza_setor)
-		self.combo.current(0) #default é o primeiro termo
+		
 
 		self.escolha3= Label(frame, text="6. Você sabe utilizar este setor sozinho? ", font=("Helvetica", 8, 'bold'))   #pergunta
 		self.escolha3.grid(row=6, column=3, padx= 10)
@@ -95,7 +95,7 @@ class Agendamento:
 							hora= self.combo4.get()
 							tempo=self.combo5.get()
 							nome = self.dados.coletadados(self.usuario)[1]
-							self.dados.addhorario(self.data, self.combo4.get(), nome,self.combo.get(), self.combo3.get(), self.combo5.get())
+							self.dados.addhorario(self.usuario,self.data, self.combo4.get(), nome,self.combo.get(), self.combo3.get(), self.combo5.get())
 							for child in self.frame.winfo_children():
 								child.destroy()
 							self.sucesso = Label(self.frame, text = "Seu agendamento foi realizado com sucesso!", font = ("Helvetica", 15, 'bold'))
@@ -117,13 +117,13 @@ class Agendamento:
 		vazio=[]
 		if self.escolha['text'] == "":
 			vazio.append("data")
-		if self.combo4.get() not in self.combo4['values'] or self.combo4.get() == 'Não há mais horários':
+		if self.combo4.get() not in self.combo4['values'] or self.combo4.get() == 'Não há mais horários'or self.combo4.get() == '----Selecione----':
 			vazio.append("combo4")
 		if self.combo.get() not in self.combo['values'] or self.combo.get() == '----Selecione----':
 			vazio.append("setor")
 		if self.combo3.get() not in self.combo3['values']:
 			vazio.append("pessoas")
-		if self.combo5.get() not in self.combo5['values']:
+		if self.combo5.get() not in self.combo5['values'] or self.combo5.get() == '----Selecione----':
 			vazio.append("tempo")
 		if len(vazio) == 0:
 			return True
@@ -139,15 +139,22 @@ class Agendamento:
 		else:
 			self.escolha['text'] = x;
 			self.data=x
+		self.atualiza_data()
 			
 	def atualiza_setor(self, event):
 		tempos= {'Fresadora': ['30 min','1h','1h30min','2h','2h30min', '3h'],'Impressora 3D':['30 min','1h','1h30min','2h','2h30min', '3h'],'Costura':['30 min','1h','1h30min','2h'],'Marcenaria':['30 min','1h','1h30min','2h','2h30min', '3h'],'Eletrônica':['30 min','1h','1h30min','2h']}
-		self.combo5['values'] = tempos[self.combo.get()]
+		V = ['----Selecione----']
+		for x in tempos[self.combo.get()]:
+			V.append(x)
+		self.combo5['values'] = V
 		self.combo5.current(0)	
 	
 	def atualiza_inicio(self,event):
 		comeca = list(self.horario_de_inicio())
-		self.combo4['values'] = comeca
+		V= ['----Selecione----']
+		for x in comeca:
+			V.append(x)
+		self.combo4['values'] = V
 		self.combo4.current(0)
 	
 	def horario_de_inicio(self):
@@ -217,9 +224,9 @@ class Agendamento:
 		
 				
 		return self.inicio
-		
 	
-	#def pessoas(self):
+	def atualiza_data(self):
+		self.combo.current(0)
 		
 							
 		
