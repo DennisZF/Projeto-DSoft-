@@ -11,13 +11,13 @@ class Alteracao_de_senha:
 		self.alteracao = Label(self.frame, text = 'Alteração de senha', font=('Helvetica', 30,'bold'))
 		self.alteracao.grid(row =0, columnspan = 2, pady = 30)
 		
-		#Nova senha
+		#-----espaço Nova senha
 		nova_senha = Label(self.frame, text="Nova senha:", height=1 ,font=("Helvetica", 14))
 		nova_senha.grid(row=2, column = 0,pady = 10)
 		self.nova_senha = Entry(self.frame, width= 25, font=('Helvetica',14), show = "*")
 		self.nova_senha.grid(row=2, column = 1,pady = 10, padx=10) 
 		
-		#Repete nova senha
+		#-----espaço Repete nova senha
 		repete_nova_senha = Label(self.frame, text="Repita a nova senha:", height=1 ,font=("Helvetica", 14))
 		repete_nova_senha.grid(row=4, column = 0,pady = 10)
 		self.repete_nova_senha = Entry(self.frame, width= 25, font=('Helvetica',14), show = "*")
@@ -26,6 +26,7 @@ class Alteracao_de_senha:
 		self.altera = Button(self.frame, text = "Salvar nova senha", font=('Helvetica', 15, 'bold'), height = 2, bg = 'Red4', cursor = 'hand2', command = self.muda)
 		self.altera.grid(row = 6, column = 0, columnspan = 1, padx= 10, pady=10)
 		
+		#----- atualização
 	def muda(self):
 		tudo = self.preenchido()
 		if tudo == True:
@@ -48,6 +49,8 @@ class Alteracao_de_senha:
 				self.notifica.destroy()
 			self.notifica = Label(self.frame, text = 'Preencha todos os espaços', font= ("Helvetica", 10, 'bold'),fg = 'red')
 			self.notifica.grid(row = 8, column = 0, columnspan = 1, padx= 10, pady = 10)
+			
+		#-------verificação de preenchiemnto  
 	def preenchido(self):
 		vazios = []
 		if self.nova_senha.get() == "":
