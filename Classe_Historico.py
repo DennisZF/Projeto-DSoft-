@@ -27,30 +27,33 @@ class Historico:
 		
 		self.datas = {}
 		
-		diadb = self.dados.dias2()
+		diadb = self.dados.dias2(usuario)
 		
-		for dia in diadb:
-			mesdb = self.dados.meses2(dia)
-			for mes in mesdb:
-				anodb = self.dados.anos2(dia,mes)
-				for ano in anodb:
-					data = "{}/{}/{}".format(dia,mes,ano)
-					for hora in self.dados.horas2(data):
-						for setor in self.dados.setor2(data,hora):
-							val = self.dados.valores2(data,hora,setor)
-							self.tree.insert('','end', values = (data, setor, val[0], val[1],val[2]))
-							dia = int(data[0:2])
-							mes = int(data[3:5])
-							ano = int(data[6:])
-							data_final = dia+(mes*100)+(ano*1000000)
-							self.datas[data] = data_final
-						
+		try:
+			for dia in diadb:
+				mesdb = self.dados.meses2(usuario,dia)
+				for mes in mesdb:
+					anodb = self.dados.anos2(usuario,dia,mes)
+					for ano in anodb:
+						data = "{}/{}/{}".format(dia,mes,ano)
+						for hora in self.dados.horas2(usuario,data):
+							for setor in self.dados.setor2(usuario,data,hora):
+								val = self.dados.valores2(usuario,data,hora,setor)
+								self.tree.insert('','end', values = (data, setor, val[0], val[1],val[2]))
+								dia = int(data[0:2])
+								mes = int(data[3:5])
+								ano = int(data[6:])
+								data_final = dia+(mes*100)+(ano*1000000)
+								self.datas[data] = data_final
+			self.ordem()
+		except:
+			self.tree.insert('','end', values = ('Não há ações', 'para serem', 'apresentadas'),tag = 'monospace')
+			self.tree.tag_configure('monospace', font='courier')
 		self.tree.column('Data', anchor = CENTER)
 		self.tree.column('Setor', anchor = CENTER)
 		self.tree.column('Quantidade de pessoas', anchor = CENTER)
 		self.tree.column('Tempo agendado', anchor = CENTER)
 		self.tree.column('Status', anchor = CENTER)
-		self.ordem()
 		
 	def ordem(self):
 		l = [(self.tree.set(k, 'Data'), k) for k in self.tree.get_children('')]
