@@ -4,8 +4,8 @@ from tkinter import *
 import tkinter.font as tkFont
 import tkinter.ttk as ttk
 from Classe_login import Login
-from Classe_Database import Database
+from Classe_Fire2 import Fire
 
-D= Database()
+D= Fire()
 abre=Login(D)
 mainloop()
