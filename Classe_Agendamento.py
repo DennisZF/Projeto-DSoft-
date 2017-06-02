@@ -7,64 +7,79 @@ class Agendamento:
 	def __init__(self,frame, dados, usuario):
 		self.usuario = usuario
 		self.dados = dados
+		#------- título
 		titulo=Label(frame, text="Agendamento", height=1, font=("Helvetica", 30, 'bold'))
-		titulo.grid(rowspan=1, columnspan = 6, pady = 15)        #título
+		titulo.grid(rowspan=1, columnspan = 6, pady = 15)    
 		
 		from Classe_Calendar2 import Calendar2
-		
-		calendario = Calendar2(frame)  #calendário para escolha de datas
+		#------ calendário para a escolha de datas
+		calendario = Calendar2(frame)  
 		calendario.grid(row = 4, rowspan=4, column=1, padx= 10)
 		
-		self.escolher = Label(frame, text="1. Selecione uma data ",font=("Helvetica", 8, 'bold'))    #instrução
+		#-----instrução
+		self.escolher = Label(frame, text="1. Selecione uma data ",font=("Helvetica", 8, 'bold')) 
 		self.escolher.grid(row=3, column=1, padx= 10)
 		
-		self.escolha = Label(frame,font=("Helvetica", 8, 'bold'))    #instrução
+		self.escolha = Label(frame,font=("Helvetica", 8, 'bold'))  
 		self.escolha.grid(row=8, column=1, padx= 10)
-		selecao = calendario.quando_selecionada(self.atualiza_calendario)		#pega a seleção e guarda numa variável
+		#------armazenamento da seleção
+		selecao = calendario.quando_selecionada(self.atualiza_calendario)
 		
+		#-------instrução
 		self.escolha2= Label(frame, text="2.  Selecione um setor do FabLab ", font=("Helvetica",8, 'bold'))
-		self.escolha2.grid(row=3, column=2, padx= 10)     #instrução
+		self.escolha2.grid(row=3, column=2, padx= 10)
+		#------combobox de seleção
 		self.combo=ttk.Combobox(frame)
-		self.combo.grid(row=4, column=2, padx= 10)  #combobox de seleção
+		self.combo.grid(row=4, column=2, padx= 10)
 		self.combo['values']=('---Selecione---','Fresadora','Impressora 3D','Costura','Marcenaria','Eletrônica')
+		#-------função de clique e atualização
 		self.combo.bind('<<ComboboxSelected>>', self.atualiza_setor)
 		
-
-		self.escolha3= Label(frame, text="6. Você sabe utilizar este setor sozinho? ", font=("Helvetica", 8, 'bold'))   #pergunta
+		#------pergunta
+		self.escolha3= Label(frame, text="6. Você sabe utilizar este setor sozinho? ", font=("Helvetica", 8, 'bold')) 
 		self.escolha3.grid(row=6, column=3, padx= 10)
-		self.combo2=ttk.Combobox(frame)    #combobox de seleção
+		#---------combobox de seleção
+		self.combo2=ttk.Combobox(frame) 
 		self.combo2.grid(row=7, column=3, padx= 10)
 		self.combo2['values']=('sim','não')
-		self.combo2.current(1) #default é o segundo termo
-
-		self.escolha4= Label(frame, text="5.  Selecione o número de pessoas ", font=("Helvetica", 8, 'bold'))     #instrução
+		#------ posição do valor adotado como padrão
+		self.combo2.current(1)
+		
+		#-------instrução
+		self.escolha4= Label(frame, text="5.  Selecione o número de pessoas ", font=("Helvetica", 8, 'bold')) 
 		self.escolha4.grid(row=6, column=2, padx= 10)
-		self.combo3=ttk.Combobox(frame)       #combobox de seleção
+		#------- combobox de seleção
+		self.combo3=ttk.Combobox(frame) 
 		self.combo3.grid(row=7, column=2, padx= 10)
 		self.combo3['values']=(1,2,3,4,5,6)
-		self.combo3.current(0) #default é o primeiro termo
+		#------ posição do valor adotado como padrão
+		self.combo3.current(0) 
 		
-		self.escolha6= Label(frame, text="3.  Selecione o tempo necessaário: ", font=("Helvetica",8, 'bold'))     #instrução
+		#------instrução
+		self.escolha6= Label(frame, text="3.  Selecione o tempo necessaário: ", font=("Helvetica",8, 'bold')) 
 		self.escolha6.grid(row=3, column=3, padx= 10)
-		self.combo5=ttk.Combobox(frame)       #combobox de seleção
+		#------ combobox de seleção
+		self.combo5=ttk.Combobox(frame)     
+		#------ função de clique e atualização
 		self.combo5.bind('<<ComboboxSelected>>', self.atualiza_inicio)
 		self.combo5.grid(row=4, column=3, padx= 10)
 		
-		
-		
-		self.escolha5= Label(frame, text="4. Selecione um horário de início ", font=("Helvetica",8, 'bold'))     #instrução
+		#------instrução
+		self.escolha5= Label(frame, text="4. Selecione um horário de início ", font=("Helvetica",8, 'bold')) 
 		self.escolha5.grid(row=4, column=4, padx= 10)
-		self.combo4=ttk.Combobox(frame)       #combobox de seleção
+		#------ combobox de seleção
+		self.combo4=ttk.Combobox(frame)
 		self.combo4.grid(row=5, column=4, padx= 10)
-		#self.combo4['values']=('8:00','8:30','9:00','9:30','10:00','10:30','11:00','11:30','12:00','12:30','14:00','14:30','15:00','15:30','16:00','16:30','17:00','17:30','18:00','18:30')
-		#self.combo4.current(0) #default é o primeiro termo
 		
 		self.frame = frame
 		
+		#-----botão de envio
 		self.enviar = Button(self.frame, height= 2 , width = 15, text = 'Enviar', font = ('Helvetica', 12, 'bold'), bg='tomato', command = self.envia,cursor="hand2")
 		self.enviar.grid(row=9, column = 2)
 	
-		
+	#-------funções
+	
+		#envio das informações
 	def envia(self):
 		confirma = messagebox.askquestion("Confirmação de envio", "Tem certeza que deseja enviar o formulário?")
 		if confirma == 'yes':
@@ -113,6 +128,7 @@ class Agendamento:
 					self.notifica.destroy()
 				self.notifica= Label(self.frame, text="Preencha todos os campos",fg= 'red', justify=CENTER,font=("Helvetica", 15, 'bold'))			#"Texto que se refere ao link
 				self.notifica.grid(row = 2,column=1)
+		#-----verificação de preenchimento
 	def preenchido(self):
 		vazio=[]
 		if self.escolha['text'] == "":
@@ -129,6 +145,8 @@ class Agendamento:
 			return True
 		else:
 			return vazio
+			
+		#-----atualização do calendário
 	def atualiza_calendario(self,x):
 		hoje = datetime.datetime.today()
 		a=hoje.strftime('%d/%m/%Y')
@@ -140,7 +158,9 @@ class Agendamento:
 			self.escolha['text'] = x;
 			self.data=x
 		self.atualiza_data()
-			
+		
+
+			#------atualização do setor escolhido
 	def atualiza_setor(self, event):
 		tempos= {'Fresadora': ['30 min','1h','1h30min','2h','2h30min', '3h'],'Impressora 3D':['30 min','1h','1h30min','2h','2h30min', '3h'],'Costura':['30 min','1h','1h30min','2h'],'Marcenaria':['30 min','1h','1h30min','2h','2h30min', '3h'],'Eletrônica':['30 min','1h','1h30min','2h']}
 		V = ['----Selecione----']
@@ -148,7 +168,7 @@ class Agendamento:
 			V.append(x)
 		self.combo5['values'] = V
 		self.combo5.current(0)	
-	
+		#------ atualização do horário de início escolhido
 	def atualiza_inicio(self,event):
 		comeca = list(self.horario_de_inicio())
 		V= ['----Selecione----']
@@ -157,6 +177,7 @@ class Agendamento:
 		self.combo4['values'] = V
 		self.combo4.current(0)
 	
+	 #------define as opções de horário de início a serem escolhidas
 	def horario_de_inicio(self):
 		
 		self.horas = {'8:00': 800,'8:30': 850,'9:00':900,'9:30':950,'10:00':1000,'10:30':1050,'11:00':1100,'11:30':1150,'12:00':1200,'12:30':1250,'13:00':1300,'13:30':1350,'14:00':1400,'14:30':1450,'15:00':1500,'15:30':1550,'16:00':1600,'16:30':1650,'17:00': 1700,'17:30': 1750,'18:00':1800,'18:30':1850}
@@ -224,7 +245,7 @@ class Agendamento:
 		
 				
 		return self.inicio
-	
+	#-----atualizção de data
 	def atualiza_data(self):
 		self.combo.current(0)
 		
