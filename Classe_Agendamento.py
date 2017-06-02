@@ -141,6 +141,8 @@ class Agendamento:
 			vazio.append("pessoas")
 		if self.combo5.get() not in self.combo5['values'] or self.combo5.get() == '----Selecione----':
 			vazio.append("tempo")
+		if self.combo2.get() not in self.combo2['values']:
+			vazio.append("inicializacao")
 		if len(vazio) == 0:
 			return True
 		else:
