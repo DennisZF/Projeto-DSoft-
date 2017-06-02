@@ -133,8 +133,8 @@ class Fire:
 		self.db.child("horarios").child(data).child(hora).child(setor).remove()
 		mudanca = {
 					"numero de pessoas": c[0],
-					"tempo": c[0],
-					"status":"Cancelado"
+					"tempo": c[1],
+					"status":"CANCELADO"
 				}
 		self.db.child("historia").child(data).child(hora).child(setor).update(mudanca)
 		
