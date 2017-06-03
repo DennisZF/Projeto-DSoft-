@@ -3,7 +3,8 @@ class Menu_principal:
 	def __init__(self, dados, usuario):
 		self.usuario = usuario
 		self.dados = dados
-		self.janela = Tk()	#Abre nova janela
+		#-------janela
+		self.janela = Tk()
 		self.janela.wm_iconbitmap("icon_bitmap.ico")
 		self.janela.geometry("{0}x{1}+0+0".format(self.janela.winfo_screenwidth(), self.janela.winfo_screenheight()))
 		self.janela.title("Página principal - FabLab Insper")
@@ -17,11 +18,11 @@ class Menu_principal:
 		
 		#------------ Menu ------------
 		
-		#Frame menu:
+		#------------Frame menu:
 		canto = Frame(self.janela, relief = SUNKEN, cursor = 'hand2')
 		canto.pack(side = TOP)
 		
-		#Botões:
+		#----------Botões:
 		self.calendario =Button(canto, text="Calendário",height = 1,width = 25,bg= 'Maroon', fg='White',command= self.calendar, font =("Helvetica", 10, 'bold')).pack(side=LEFT)
 		self.agendamento = Button(canto, text="Agendamento",height = 1, width =25, bg='Tomato',fg='Black',command= self.agenda,font =("Helvetica", 10, 'bold')).pack(side=LEFT)
 		self.cancelamento = Button(canto, text="Cancelamento",height = 1,width = 25,bg= 'Maroon',fg='White',font =("Helvetica", 10, 'bold'), command= self.cancela).pack(side=LEFT)
@@ -40,7 +41,7 @@ class Menu_principal:
 		
 	#------- Funções ---------	
 	
-	#Botão sair:
+	#------------função do botão sair:
 	
 	def sai(self):
 		from Classe_Sair import Sair
@@ -53,6 +54,7 @@ class Menu_principal:
 		self.menu=Frame(self.janela,width = 1366, height=600)
 		s = Sair(self.janela,self.frame, self.dados, self.menu) 
 	
+	#----------função do botão calendário
 	def calendar(self):
 		from Classe_Calendario import Calendario
 		if hasattr(self, 'menu'):
@@ -65,6 +67,7 @@ class Menu_principal:
 		self.menu.pack(side = RIGHT, padx = 30)
 		C = Calendario(self.frame, self.dados, self.menu) 
 	
+	#-----------função do botão agenda
 	def agenda(self):
 		from Classe_Agendamento import Agendamento
 		if hasattr(self, 'menu'):
@@ -74,7 +77,8 @@ class Menu_principal:
 		self.frame=Frame(self.janela)
 		self.frame.pack(padx=0, pady=15)
 		selecoes= Agendamento(self.frame, self.dados, self.usuario)
-		
+	
+	#-----------função do botão instruções	
 	def instrucoes(self):
 		from Classe_Instruções import Instrucoes
 		if hasattr(self, 'menu'):
@@ -87,6 +91,7 @@ class Menu_principal:
 		self.frame.pack(padx=0, pady=15)
 		I=Instrucoes(self.frame, self.menu)
 	
+	#-----------função do botão minha conta
 	def conta(self):
 		from Classe_Minha_conta import Minha_conta
 		if hasattr(self, 'menu'):
@@ -96,7 +101,8 @@ class Menu_principal:
 		self.frame=Frame(self.janela)
 		self.frame.pack(padx=0, pady=15)
 		M= Minha_conta(self.janela,self.frame, self.dados, self.usuario)
-
+	
+	#---------- função do botão cancelamento
 	def cancela(self):
 		from Classe_Cancelamento import Cancelamento
 		if hasattr(self, 'menu'):
@@ -106,7 +112,7 @@ class Menu_principal:
 		self.frame=Frame(self.janela)
 		self.frame.pack(padx=0, pady=15)
 		A= Cancelamento(self.frame, self.dados, self.usuario)
-
+	#-----------função do botão histórico
 	def historia(self):
 		from Classe_Historico import Historico
 		if hasattr(self, 'menu'):

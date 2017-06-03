@@ -107,7 +107,9 @@ class Fire:
 									}
 				}
 		self.db.child("historia").child(usuario).update(agenda2)
-		
+	
+
+    #----------transferência de dados	
 	def horas(self,data):
 		existentes = self.db.child("horarios").child(data).get()
 		ja= existentes.val()

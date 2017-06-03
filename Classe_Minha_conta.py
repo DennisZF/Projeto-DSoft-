@@ -10,10 +10,10 @@ class Minha_conta:
 		self.userdados= dados.coletadados(usuario)
 		self.frame = frame
 		self.user = usuario
-		
+		#--------título da página
 		self.titulo = Label(self.frame, text = "Minha conta", font=('Helvetica', 30,'bold'))
 		self.titulo.grid(row =0, columnspan = 2, pady = 30)
-		
+		#---------saída do nome de usuário
 		pede_nome = Label(self.frame, text="Nome:", height=1 ,font=("Helvetica", 14))
 		pede_nome.grid(row=5, column = 0, pady = 10)
 		self.nome = Entry(self.frame, width= 25,font=('Helvetica',14))
@@ -21,7 +21,7 @@ class Minha_conta:
 		self.nome.configure(state = 'disabled',disabledbackground= "NavajoWhite", disabledforeground= 'Peru')
 		self.nome.grid(row=5, column = 1, pady = 10, padx = 10) 
 	
-		#Curso
+		#----------entrada Curso
 		pede_curso = Label(self.frame, text="Curso:", height=1 ,font=("Helvetica", 14))
 		pede_curso.grid(row=7, column = 0,pady = 10)
 		self.curso = Entry(self.frame, width= 25,font=('Helvetica',14))
@@ -30,7 +30,7 @@ class Minha_conta:
 		self.curso.grid(row=7, column = 1,pady = 10, padx=10) 
 		
 			
-		#Semestre
+		#---------entrada Semestre
 		pede_semestre = Label(self.frame, text="Semestre:", height=1 ,font=("Helvetica", 14))
 		pede_semestre.grid(row=9, column = 0,pady = 10)
 		self.semestre = Entry(self.frame, width= 25, font=('Helvetica',14))
@@ -38,7 +38,7 @@ class Minha_conta:
 		self.semestre.configure(state = 'disabled',disabledbackground= "NavajoWhite", disabledforeground= 'Peru')
 		self.semestre.grid(row=9, column = 1,pady = 10, padx=10) 
 			
-		#Número de matrícula
+		#----------entrada Número de matrícula
 		pede_matricula = Label(self.frame, text="Número de matrícula:", height=1 ,font=("Helvetica", 14))
 		pede_matricula.grid(row=11, column = 0,pady = 10)
 		self.matricula = Entry(self.frame, width= 25, font=('Helvetica',14))
@@ -46,7 +46,7 @@ class Minha_conta:
 		self.matricula.configure(state = 'disabled',disabledbackground= "NavajoWhite", disabledforeground= 'Peru')
 		self.matricula.grid(row=11, column = 1,pady = 10, padx=10) 
 			
-		#Email
+		#----------- entrada Email
 		pede_email = Label(self.frame, text="Email do Insper:", height=1 ,font=("Helvetica", 14))
 		pede_email.grid(row=13, column = 0,pady = 10)
 		self.email = Entry(self.frame, width= 25, font=('Helvetica',14))
@@ -54,7 +54,7 @@ class Minha_conta:
 		self.email.configure(state = 'disabled', disabledbackground= "NavajoWhite", disabledforeground= 'Peru')
 		self.email.grid(row=13, column = 1,pady = 10, padx=10) 
 			
-		#Nome de usuário
+		#----------entrada Nome de usuário
 		pede_usuario = Label(self.frame, text="Nome de usuário:", height=1 ,font=("Helvetica", 14))
 		pede_usuario.grid(row=3, column = 0,pady = 10)
 		self.usuario1 = Entry(self.frame, width= 25, font=('Helvetica',14))
@@ -63,14 +63,16 @@ class Minha_conta:
 		self.usuario1.grid(row=3, column = 1,pady = 10, padx=10) 
 			
 
-		
+		#---------botão alteração de senha
 		self.altera = Button(self.frame, height = 2,width= 20, text = 'Alterar senha', font = ('Helvetica',12, 'bold'), bg = 'tomato', command= self.alterar, cursor = 'hand2')
 		self.altera.grid( row = 5, column = 4, padx = 15)
-		
+		#-----------botão edição da conta
 		self.editar = Button(self.frame, height= 2 , width = 20, text = 'Editar', font = ('Helvetica', 12,'bold'), bg='tomato', command = self.edit,cursor="hand2")
 		self.editar.grid(row=9, column = 4, padx = 15)
 		self.delete = Button(self.frame, height = 2,width= 20, text = 'Apagar conta', font = ('Helvetica',12, 'bold'), bg = 'Maroon',fg='White', command= self.deleta, cursor = 'hand2')
 		self.delete.grid( row = 13, column = 4, padx = 15)
+	
+	#------------função salvar
 	def salvar(self):
 		tudo = self.preenchido()
 		if tudo == True:
@@ -93,6 +95,8 @@ class Minha_conta:
 				info.configure(bg = 'Khaki1')
 				self.notifica= Label(self.frame, text="Preencha todos os campos",fg= 'red', justify=CENTER,font=("Helvetica", 10, 'bold'))					#"Texto que se refere ao link
 				self.notifica.grid(row = 2, columnspan = 2)
+	
+	#-----------verificação de preenchimento 
 	def preenchido(self):
 		vazios=[]
 		for x in [self.usuario1,self.nome,self.curso, self.semestre, self.matricula, self.email, self.curso]:
@@ -105,7 +109,8 @@ class Minha_conta:
 			return True
 		else:
 			return vazios
-			
+	
+	#-----------função edição	
 	def edit(self):
 		for x in [ self.nome, self.semestre, self.matricula, self.email, self.curso]:
 			x.configure(state = 'normal')
@@ -118,7 +123,8 @@ class Minha_conta:
 		self.editar.destroy()
 		self.salva = Button(self.frame, height = 2, width = 25, text='Salvar alterações',font = ('Helvetica', 12,'bold'), bg='tomato', command = self.salvar,cursor="hand2")
 		self.salva.grid(row= 9, column = 4, padx = 20)
-		
+	
+		#---------verificação de senha
 	def alterar(self):
 		self.popup = Tk()
 		self.popup.wm_iconbitmap("icon_bitmap.ico")
@@ -131,7 +137,8 @@ class Minha_conta:
 		
 		self.confirma = Button(self.popup, text = 'Enviar', height = 1, width = 15, font = ('Helvetica', 15, 'bold'), fg= 'white', bg = 'Red4', command = self.confirmacao)
 		self.confirma.grid(row = 2 ,column = 0, columnspan = 2 , padx = 10, pady = 10)
-		
+	
+		#-----------confirmação
 	def confirmacao(self):
 		if self.dados.verificacao(self.usuario,self.senha.get()) == True:
 			self.popup.destroy()
@@ -143,6 +150,8 @@ class Minha_conta:
 			erro = messagebox.showerror("Erro","Senha incorreta")
 			self.popup.destroy()
 			self.alterar()
+		
+		#------------apagar conta
 	def deleta(self):
 		atencao = messagebox.askyesno("Atenção!","Tem certeza que deseja apagar essa conta?")
 		if atencao == True:

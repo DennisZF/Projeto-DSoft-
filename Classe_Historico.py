@@ -11,10 +11,10 @@ class Historico:
 	
 		
 		
-		
+		#-------título da página
 		titulo=Label(frame, text="Histórico", height=1, font=("Helvetica", 30, 'bold'))
-		titulo.grid(rowspan=1, columnspan = 6, pady = 15)       #título
-
+		titulo.grid(rowspan=1, columnspan = 6, pady = 15)  
+		#---------- corpo da guia
 		self.tree = ttk.Treeview(columns=('Data','Setor', 'Quantidade de pessoas', 'Tempo agendado', 'Status'), show='headings')
 		self.tree.heading('#1', text='Data')
 		self.tree.heading('#2', text='Setor')
@@ -28,7 +28,7 @@ class Historico:
 		self.datas = {}
 		
 		diadb = self.dados.dias2(usuario)
-		
+#------------busca dos dados existentes
 		try:
 			for dia in diadb:
 				mesdb = self.dados.meses2(usuario,dia)
